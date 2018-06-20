@@ -35,6 +35,13 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
+  'GET /register': {
+    controller: 'user',
+    action: "cekID",
+  },
+  '/login': {
+    view: 'login'
+  },
   'GET /admin/rating': {
     controller: 'rating',
     action: "findall",
@@ -45,6 +52,7 @@ module.exports.routes = {
     action: "findall",
 //    view: 'user/list'
   },
+ 
   
 
   /***************************************************************************
