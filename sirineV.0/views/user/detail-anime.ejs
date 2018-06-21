@@ -1,14 +1,333 @@
-<table>
-    <tr>
-        <td>
-            <%= anime.id %>
-            ../../assets/images/anime/<%= anime.photo_url %>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <img src="http://localhost:1337/images/anime/<%= anime.photo_url %>">ini image
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
+  <link rel="stylesheet" href="..\assets\styles\custome.css" type="text/css"> </head>
+
+<body class="background-hitam">
+  <nav class="navbar navbar-expand-md background-hitam navbar-dark ">
+    <div class="container">
+      <a class="navbar-brand" href="#">Brand</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Daftar Anime</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Rekomendasi Anime</a>
+          </li>
+        </ul>
+      </div>
+      <div class="btn-group ">
+          <button class="btn btn-warnabiru dropdown-toggle" data-toggle="dropdown"> Dropdown </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+          </div>
+        </div>
+        
+        <form class="form-inline mx-2">
+          <input class="form-control mr-2" style="width:170px;" type="text" placeholder="Search">
+          <button class="btn btn-warnabiru" style="background-color:#4f70ce; width:80px;" type="submit">Search</button>
+        </form>
+        <div class="row">
+          <a href="login.html" class="btn navbar-btn ml-1 text-white btn-secondary">
+            <i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign in</a>
+          <a href="register.html"class="btn navbar-btn ml-1 text-white btn-secondary">
+            <i class="fa d-inline fa-lg fa-user-plus"></i> Daftar </a>
+        </div>
+    </div>
+  </nav>
+  <div class="py-2 text-center background-hitam">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="mb-2 mt-2 text-white">Anime</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-1">
+    <div class="container cardsview">
+      <div class="row">
+        <div class="col-md-5 ">
+         <h1 class="mb-2 mt-2 text-center text-black"><%= anime.nama_anime %></h1> 
+          <img class="img-fluid d-block mb-4 w-100 h-75 img-thumbnail" src="http://localhost:1337/images/anime/<%= anime.photo_url %>"> 
+          <button type="submit" class="btn btn-warnabiru ">Favorite</button>
+          </div>
+        <div class="col-md-7">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a href="" class="active nav-link" data-toggle="tab" data-target="#tabone">Deskripsi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="" data-toggle="tab" data-target="#tabtwo">Tonton</a>
+            </li>
             
-        </td>
-    </tr>
-</table>
+          </ul>
+          <div class="tab-content mt-2">
+            <div class="tab-pane fade show active" id="tabone" role="tabpanel">
+                  <p class=""><%= anime.deskripsi %></p>
+            </div>
+            <div class="tab-pane fade " id="tabtwo" role="tabpanel">
+              <div class="col-md-12">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="textcenter">Episode</th>
+                      <th class="textcenter">Tanggal Rilis</th>
+                      <th colspan="2" class="textcenter">Tonton</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td>Otto</td>
+                      <td>
+                        <button type="submit" class="btn btn-warnabiru">Indonesia</button>
+                      </td>
+                      <td>
+                        <button type="submit" class="btn btn-warnabiru">Indonesia</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>
+                        <button type="submit" class="btn btn-warnabiru">Indonesia</button>
+                      </td>
+                      <td>
+                        <button type="submit" class="btn btn-warnabiru">Indonesia</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Larry</td>
+                      <td>the Bird</td>
+                      <td>
+                        <button type="submit" class="btn btn-warnabiru">Indonesia</button>
+                      </td>
+                      <td>
+                        <button type="submit" class="btn btn-warnabiru">Indonesia</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2 text-center background-hitam">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="mb-2 text-white">Rating Anime</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-2 ">
+    <div class="container cardsview">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="col-md-10 m-5 py-5">
+                <h1 class="">3.9 Dari 5</h1>
+                <h6 class="">Banyak Ulasan 50 Orang</h6>
+                <div class="starcontainer">
+                  <span class="fa fa-star colorbintang"></span>
+                  <span class="fa fa-star colorbintang"></span>
+                  <span class="fa fa-star colorbintang"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5  mt-3">
+              <h5 class="mb-1">Bintang 5</h5>
+              <h6>Banyak Ulasan</h6>
+              <div class="progress mb-1">
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 40%">50%</div>
+              </div>
+              <h5 class="mb-1">Bintang 4</h5>
+              <h6>Banyak Ulasan</h6>
+              <div class="progress mb-1">
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 40%">50%</div>
+              </div>
+              <h5 class="mb-1">Bintang 3</h5>
+              <h6>Banyak Ulasan</h6>
+              <div class="progress mb-1">
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 40%">50%</div>
+              </div>
+              <h5 class="mb-1">Bintang 2</h5>
+              <h6>Banyak Ulasan</h6>
+              <div class="progress mb-1">
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 40%">50%</div>
+              </div>
+              <h5 class="mb-1">Bintang 1</h5>
+              <h6>Banyak Ulasan</h6>
+              <div class="progress mb-1">
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 40%">50%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2 text-center background-hitam">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="mb-2 text-white">Review Anime</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-2 ">
+    <div class="container cardsview">
+      <div class="row">
+        <div class="col-md-12 p-4">
+          <div class="row">
+            <div class="col-sm-2 text-center">
+              <a href="#">
+                <img class="d-block img-fluid" src="image\onepiece.jpg"> </a>
+            </div>
+            <div class="col-sm-9">
+              <h3>Nama Profil</h3>
+              <h4>Tanggal Riviews</h4>
+              <div>
+                <span class="fa fa-star colorbintang"></span>
+                <span class="fa fa-star colorbintang"></span>
+                <span class="fa fa-star colorbintang"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </div>
+              <p class="">Isi Riview.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2 text-center background-hitam">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="mb-2 text-white">Review</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-2 ">
+    <div class="container cardsview">
+      <div class="row">
+        <div class="col-md-12 p-4">
+          <div class="row">
+            <div class="col-sm-2 text-center">
+              <a href="#">
+                <img class="d-block img-fluid" src="image\onepiece.jpg"> </a>
+            </div>
+            <div class="col-sm-9">
+              <h4>Beri Rating</h4>
+              <div>
+                <span class="fa fa-star colorbintang"></span>
+                <span class="fa fa-star colorbintang"></span>
+                <span class="fa fa-star colorbintang"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </div>
+              <p class="">Isi Riview.</p>
+              <textarea class="form-control" id="Textarea" rows="3" placeholder="Type here"></textarea>
+              <button type="submit" class="mt-2 btn btn-warnabiru">Kirim</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5 text-center background-hitam">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="mb-4 text-white">Rekomendasi Anime</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-6 p-1">
+          <a href="#">
+            <img class="d-block img-fluid" src="image\onepiece.jpg"> </a>
+        </div>
+        <div class="col-md-3 col-6 p-1">
+          <a href="#">
+            <img class="d-block img-fluid" src="image\onepiece.jpg"> </a>
+        </div>
+        <div class="col-md-3 col-6 p-1">
+          <a href="#">
+            <img class="d-block img-fluid" src="image\onepiece.jpg"> </a>
+        </div>
+        <div class="col-md-3 col-6 p-1">
+          <a href="#">
+            <img class="d-block img-fluid" src="image\onepiece.jpg"> </a>
+        </div>
+        <div class="col-md-12 textright mx-1 mt-1">
+          <a href="register.html" class="warnabiru">
+            <u>
+              <b>Lihat Rekomendasi</b>
+            </u>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2 bg-dark text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <p class="lead">Sign up to our newsletter for the latest news</p>
+          <form class="form-inline">
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Your e-mail here"> </div>
+            <button type="submit" class="btn btn-primary ml-3">Subscribe</button>
+          </form>
+        </div>
+        <div class="col-4 col-md-1 align-self-center">
+          <a href="https://www.facebook.com" target="_blank">
+            <i class="fa fa-fw fa-facebook fa-3x text-white"></i>
+          </a>
+        </div>
+        <div class="col-4 col-md-1 align-self-center">
+          <a href="https://twitter.com" target="_blank">
+            <i class="fa fa-fw fa-twitter fa-3x text-white"></i>
+          </a>
+        </div>
+        <div class="col-4 col-md-1 align-self-center">
+          <a href="https://www.instagram.com" target="_blank">
+            <i class="fa fa-fw fa-instagram text-white fa-3x"></i>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mt-3 text-center">
+          <p>© Copyright 2017 Pingendo - All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+</body>
+

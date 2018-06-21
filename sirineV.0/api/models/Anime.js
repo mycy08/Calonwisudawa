@@ -30,6 +30,11 @@ module.exports = {
     },
     status:{
       type:'string'
+    },
+
+    episodes:{
+      collection:'episode_anime',
+      via :'owner'
     }
   },
   connection:'database'

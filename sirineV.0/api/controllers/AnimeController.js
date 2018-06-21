@@ -6,16 +6,25 @@
  */
 
 module.exports = {
-	detailAnime: function(req, res, next){
-        Anime.findOne(req.param('id'), function foundAnime(err,anime){
-            if(err) return next(err);
-            if(!anime) return next('Anime doesn\'t exist.');
-            res.view("user/detail-anime/", {
-                status: 'OK',
-                title: 'Detail Anime',
-                anime: anime
-            });
-        });
+    detailAnime :function(req,res,next){
+        var idanime = req.param('id_anime');
+        Anime.findOne({
+            id_anime:idanime
+        }).populate('episodes',{
+            where :{
+                id_anime:idanime
+            }
+        }).exec(function (err, anime){
+            if (err) {
+              return res.serverError(err);
+            }
+            res.json(anime)
+            //  res.view("user/detail-anime/", {
+            //                  status: 'OK',
+            //                  title: 'Detail Anime',
+            //                  anime: anime
+            //   });
+          }); 
     },
 };
 

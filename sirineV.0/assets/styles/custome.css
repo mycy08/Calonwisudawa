@@ -2,6 +2,12 @@
 	text-decoration: none;
 	color: #4f70ce;
 }
+.warnabiruright{
+  color: #4f70ce;
+  text-align: right;
+}
+.mt-6 {
+  margin-top: 4.7rem !important; }
 .background-hitam
 {
 
@@ -16,6 +22,10 @@
 }
 .margintopminus{
 	margin-top: -55px;
+}
+.marginbottomminus
+{
+  margin-bottom: -200px;
 }
 .wallogin{
 	background-image: url("../image/loginwall.jpg");
@@ -32,6 +42,50 @@
  	margin-top: -10px;
  	text-align: right;
  }
+ .textrights{
+  text-align: right;
+ }
  .textleft{
  	text-align: left;
+ }
+ .textcenter{
+ 	vertical-align: middle;
+ 	text-align: center;
+ }
+ .colorbintang{
+ 	color: yellow;
+ }
+ .lines{
+ 	border-top: 1px solid black;
+ 	height: 100%;
+ 	
+ }
+ .starcontainer{
+  margin:15px;
+  margin-top: -15px;
+  padding: 15px;
+ }
+ .cardsview{
+    padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125); 
+  border-radius: 0.25rem;}
+ 
+ .formcard{
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+ }
+ .grouptext
+ {
+  width: 200px;
  }
