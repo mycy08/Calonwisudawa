@@ -8,7 +8,10 @@
 module.exports = {
 
   attributes: {
-    
+    id_anime:{
+      model:'anime',
+      required:true
+    },
     episode:{
       type:'string'
     },
@@ -17,10 +20,6 @@ module.exports = {
     },
     url_versi_indo:{
       type:'string'
-    },
-    owner:{
-      model:'anime',
-      required:true
     }
   },
   connection:'database'

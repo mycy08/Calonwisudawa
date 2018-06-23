@@ -9,10 +9,12 @@ module.exports = {
 
   attributes: {
     id_anime:{
-      type:'string'
+      model:'anime',
+      required:true
     },
     id_genre:{
-      type:'string'
+      model:'genre',
+      required:true
     }
   },
   connection:'database'

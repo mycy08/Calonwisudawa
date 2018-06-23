@@ -9,9 +9,7 @@ var bcrypt = require('bcrypt')
 module.exports = {
 
   attributes: {
-    id_user:{
-      type:'string'
-    },
+    
     email:{
       type:'string',
       email: true,
@@ -44,6 +42,10 @@ module.exports = {
     },
     batal:{
       type:'integer'
+    },
+    ratings:{
+      collection:'rating',
+      via:'id_user'
     },
     toJSON: function(){
       var obj = this.toObject();

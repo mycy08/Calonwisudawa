@@ -8,9 +8,6 @@
 module.exports = {
 
   attributes: {
-    id_anime:{
-      type:'string'
-    },
     type:{
       type:'string',
       required:true
@@ -31,10 +28,17 @@ module.exports = {
     status:{
       type:'string'
     },
-
     episodes:{
       collection:'episode_anime',
-      via :'owner'
+      via :'id_anime'
+    },
+    genre_lists:{
+      collection:'genre_list',
+      via:'id_anime'
+    },
+    ratings:{
+      collection:'rating',
+      via:'id_anime'
     }
   },
   connection:'database'

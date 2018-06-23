@@ -9,11 +9,11 @@ module.exports = {
 
   attributes: {
     id_user:{
-      type:'string',
+      model:'user',
       required:true
     },
     id_anime:{
-      type:'string',
+      model:'anime',
       required:'string'
     },
     score:{

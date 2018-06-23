@@ -7,14 +7,7 @@
 
 module.exports = {
     detailAnime :function(req,res,next){
-        var idanime = req.param('id_anime');
-        Anime.findOne({
-            id_anime:idanime
-        }).populate('episodes',{
-            where :{
-                id_anime:idanime
-            }
-        }).exec(function (err, anime){
+        Anime.findOne(req.param('id')).populateAll().exec(function (err, anime){
             if (err) {
               return res.serverError(err);
             }

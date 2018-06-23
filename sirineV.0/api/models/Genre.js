@@ -8,11 +8,13 @@
 module.exports = {
 
   attributes: {
-    id_genre:{
-      type:'string'
-    },
     nama_genre:{
       type:'string'
+    },
+    genre_lists:{
+      collection:'genre_list',
+      via:'id_genre'
+      
     }
   },
   connection:'database'
