@@ -1,48 +1,58 @@
+<!DOCTYPE html>
+<html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
-  <link rel="stylesheet" href="..\assets\styles\custome.css" type="text/css"> </head>
+  <link rel="stylesheet" href="styles/custome.css" type="text/css"> </head>
 
 <body class="background-hitam">
   <nav class="navbar navbar-expand-md background-hitam navbar-dark ">
     <div class="container">
-      <a class="navbar-brand" href="#">Brand</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon text-white"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Daftar Anime</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Rekomendasi Anime</a>
-          </li>
-        </ul>
-      </div>
-      <div class="btn-group ">
-          <button class="btn btn-warnabiru dropdown-toggle" data-toggle="dropdown"> Dropdown </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
+        <a class="navbar-brand text-white" href="#"><img src="image\sirenelogoflat.jpg"></img></a>
+
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link text-white" href="#">
+              <i class="fa d-inline fa-lg fa-home mx-1"></i>Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">
+              <i class="fa d-inline fa-lg fa-user-circle-o mx-1"></i>Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">
+              <i class="fa d-inline fa-lg fa-user-plus mx-1"></i>Daftar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">
+              <i class="fa d-inline fa-lg fa-user-circle-o mx-1"></i>Login</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
         </div>
-        
-        <form class="form-inline mx-2">
-          <input class="form-control mr-2" style="width:170px;" type="text" placeholder="Search">
-          <button class="btn btn-warnabiru" style="background-color:#4f70ce; width:80px;" type="submit">Search</button>
-        </form>
-        <div class="row">
-          <a href="login.html" class="btn navbar-btn ml-1 text-white btn-secondary">
-            <i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign in</a>
-          <a href="register.html"class="btn navbar-btn ml-1 text-white btn-secondary">
-            <i class="fa d-inline fa-lg fa-user-plus"></i> Daftar </a>
         </div>
-    </div>
-  </nav>
+      </nav>
   <div class="py-2 text-center background-hitam">
     <div class="container">
       <div class="row">
@@ -68,17 +78,66 @@
             <li class="nav-item">
               <a class="nav-link" href="" data-toggle="tab" data-target="#tabtwo">Tonton</a>
             </li>
-            
+            <li class="nav-item">
+              <a href="" class="nav-link" data-toggle="tab" data-target="#tabthree">Admin Posting</a>
+            </li>
           </ul>
           <div class="tab-content mt-2">
             <div class="tab-pane fade show active" id="tabone" role="tabpanel">
                   <p class=""><%= anime.deskripsi %></p>
+                  <div class="card">
+                      <div class="card-header"> Informasi </div>
+                      <div class="card-body">
+                        <table>
+                          <tr>
+                            <td width='120px'>Judul</td>
+                            <td width='20px'>:</td>
+                            <td>
+                              <%= anime.nama_anime %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Type</td>
+                            <td>:</td>
+                            <td>
+                              <%= anime.type %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Status</td>
+                            <td>:</td>
+                            <td>
+                              <%= anime.status %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Genre</td>
+                            <td>:</td>
+                            <td>
+                              <%  _.each(anime.genreStrings,function(genre_list){ %>
+                                <a href="#">
+                                  <%= genre_list.nama_genre %>
+                                </a>
+                                <%})%>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Tahun Terbit</td>
+                            <td>:</td>
+                            <td>
+                              <%= anime.tahun_terbit %>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
             </div>
             <div class="tab-pane fade " id="tabtwo" role="tabpanel">
               <div class="col-md-12">
                 <table class="table">
                   <thead>
                     <tr>
+                      <th class="textcenter">Judul Anime</th>
                       <th class="textcenter">Episode</th>
                       <th class="textcenter">Tanggal Rilis</th>
                       <th colspan="2" class="textcenter">Tonton</th>
@@ -86,7 +145,8 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td></td>
+                      <td class="textcenter">1</td>
+                      <td>Mark</td>
                       <td>Otto</td>
                       <td>
                         <button type="submit" class="btn btn-warnabiru">Indonesia</button>
@@ -119,9 +179,13 @@
                     </tr>
                   </tbody>
                 </table>
+                <button type="submit" class="btn btn-warnabiru">Indonesia</button>
               </div>
             </div>
             
+            <div class="tab-pane fade" id="tabthree" role="tabpanel">
+              <p class="">Tab pane three. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -195,32 +259,60 @@
       </div>
     </div>
   </div>
-  <div class="mb-2 ">
-    <div class="container cardsview">
-      <div class="row">
-        <div class="col-md-12 p-4">
-          <div class="row">
-            <div class="col-sm-2 text-center">
-              <a href="#">
-                <img class="d-block img-fluid" src="image\onepiece.jpg"> </a>
-            </div>
-            <div class="col-sm-9">
-              <h3>Nama Profil</h3>
-              <h4>Tanggal Riviews</h4>
-              <div>
-                <span class="fa fa-star colorbintang"></span>
-                <span class="fa fa-star colorbintang"></span>
-                <span class="fa fa-star colorbintang"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
+  <div class="mb-4 ">
+      <div class="container cardsview">
+        <div class="row">
+          <div class="col-md-12 p-4">
+            <%  _.each(anime.userStrings.slice(0,3),function(user){ %>
+  
+  
+              <div class="row  border py-2 mb-2">
+                <div class="col-sm-2 text-center">
+                  <% if(user.photo_url) {%>
+                    <a href="#">
+                      <img class="d-block img-fluid mb-2" src="/images/user/<%= user.photo_url %>"> </a>
+                    <%}
+                else{ %>
+                      <a href="#">
+                        <img class="d-block img-fluid mb-2" src="/images/user/default.png"> </a>
+                      <%}%>
+  
+                </div>
+                <div class="col-sm-9">
+                  <h3>
+                    <%= user.nama %>
+                  </h3>
+                  <div>
+                    <span class="fa fa-star colorbintang"></span>
+                    <span class="fa fa-star colorbintang"></span>
+                    <span class="fa fa-star colorbintang"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                  </div>
+                  <% if(user.review){%>
+                    <p class="">
+                      <%= user.review %>
+                    </p>
+                    <%}
+                  else{%>
+                      <p></p>
+                      <%}%>
+  
+                </div>
               </div>
-              <p class="">Isi Riview.</p>
-            </div>
+              <%})%>
+              <div class="col-md-12 textright mx-3 mt-1">
+                  <a href="register.html" class="warnabiru">
+                    <u>
+                      <b>Lihat Review</b>
+                    </u>
+                  </a>
           </div>
         </div>
+        
       </div>
+      
     </div>
-  </div>
   <div class="py-2 text-center background-hitam">
     <div class="container">
       <div class="row">
@@ -258,39 +350,37 @@
     </div>
   </div>
   <div class="py-5 text-center background-hitam">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="mb-4 text-white">Rekomendasi Anime</h1>
+      <div class="container">
+        <div class="row ">
+          <div class="col-md-12">
+            <h1 class="mb-4 text-white">Rekomendasi Anime</h1>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3 col-6 p-1">
-          <a href="#">
-            <img class="d-block img-fluid" src="image\onepiece.jpg"> </a>
-        </div>
-        <div class="col-md-3 col-6 p-1">
-          <a href="#">
-            <img class="d-block img-fluid" src="image\onepiece.jpg"> </a>
-        </div>
-        <div class="col-md-3 col-6 p-1">
-          <a href="#">
-            <img class="d-block img-fluid" src="image\onepiece.jpg"> </a>
-        </div>
-        <div class="col-md-3 col-6 p-1">
-          <a href="#">
-            <img class="d-block img-fluid" src="image\onepiece.jpg"> </a>
-        </div>
-        <div class="col-md-12 textright mx-1 mt-1">
-          <a href="register.html" class="warnabiru">
-            <u>
-              <b>Lihat Rekomendasi</b>
-            </u>
-          </a>
+        <div class="row">
+          <div class="col-md-3 col-6 p-1 ">
+            <a href="#">
+              <img class="d-block img-fluids" src="/images/anime/ID_132.jpg"> </a>
+          </div>
+          <div class="col-md-3 col-6 p-1">
+            <a href="#">
+              <img class="d-block img-fluids" src="/images/anime/ID_131.jpg"> </a>
+          </div>
+          <div class="col-md-3 col-6 p-1">
+            <a href="#">
+              <img class="d-block img-fluids" src="/images/anime/ID_133.jpg"> </a>
+          </div>
+          <div class="col-md-3 col-6 p-1">
+            <a href="#">
+              <img class="d-block img-fluids" src="/images/anime/ID_134.jpg"> </a>
+          </div>
+          <div class="col-md-12 lihatrekomendasi">
+            <a href="#">
+              Lihat Rekomendasi
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   <div class="py-2 bg-dark text-white">
     <div class="container">
       <div class="row">
@@ -331,3 +421,4 @@
   
 </body>
 
+</html>

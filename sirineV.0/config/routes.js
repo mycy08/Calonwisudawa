@@ -36,12 +36,21 @@ module.exports.routes = {
     view: 'homepage'
   },
   'GET /register': {
-    controller: 'user',
-    action: "cekID",
+    controller: 'session',
+    action: "daftar",
   },
-  '/login': {
-    view: 'login'
+  'GET /login': {
+    controller: 'session',
+    action: "login",
   },
+  // 'GET /anime/detailAnime/:id':{
+  //    controller:"anime",
+  //    action:"detailAnimeRating"
+  // } ,
+  'GET /anime/detailAnime/:id':{
+    controller:"anime",
+    action:"detailAnime"
+ } ,
   'GET /admin/rating': {
     controller: 'rating',
     action: "findall",

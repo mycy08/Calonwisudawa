@@ -11,7 +11,7 @@ module.exports = {
     nama_genre:{
       type:'string'
     },
-    genre_lists:{
+    genres:{
       collection:'genre_list',
       via:'id_genre'
       

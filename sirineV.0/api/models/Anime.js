@@ -36,6 +36,7 @@ module.exports = {
       collection:'genre_list',
       via:'id_anime'
     },
+    
     ratings:{
       collection:'rating',
       via:'id_anime'
