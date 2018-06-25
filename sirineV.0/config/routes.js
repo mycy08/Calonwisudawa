@@ -43,23 +43,27 @@ module.exports.routes = {
     controller: 'session',
     action: "login",
   },
-  // 'GET /anime/detailAnime/:id':{
-  //    controller:"anime",
-  //    action:"detailAnimeRating"
-  // } ,
+  
   'GET /anime/detailAnime/:id':{
     controller:"anime",
     action:"detailAnime"
  } ,
+ 'GET /user/profile/:id': {
+  controller: 'user',
+  action: "userProfile",
+},
+'GET /user/edit-profile/:id': {
+  controller: 'user',
+  action: "editProfile",
+},
   'GET /admin/rating': {
     controller: 'rating',
     action: "findall",
-//    view: 'user/list'
+
   },
   'GET /admin/genre_list': {
     controller: 'genre_list',
     action: "findall",
-//    view: 'user/list'
   },
  
   

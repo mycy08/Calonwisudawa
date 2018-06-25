@@ -20,20 +20,6 @@
   border-color: #4f70ce;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); 
 }
-.btn-warnahijau {
-	width: 100%;
-  color: #fff;
-  background-color: #07ce4a;
-  border-color:#07ce4a;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); 
-}
-.btn-warnamerah {
-	width: 100%;
-  color: #fff;
-  background-color: #ce0707;
-  border-color:#ce0707;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); 
-}
 .margintopminus{
 	margin-top: -55px;
 }
@@ -60,10 +46,6 @@
  	margin-top: -10px;
  	text-align: right;
  }
- .riviewslink{
-  margin-top: -40px;
-  text-align: right;
-}
  .textrights{
   text-align: right;
  }
@@ -114,3 +96,39 @@
  .img-fluids {
   max-width: 100%;
   height: 85%; }
+  .mxnav{
+   margin-left: 0.300rem !important; 
+  }
+  .imgProfile{
+      padding: 0.25rem;
+    background-color: #000000;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
+    max-width: 100%;
+    height: 50%;
+  }
+  .cardfilter {
+  padding: 0.25rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
+  .form-groups {
+  margin-bottom: 1rem; }
+  .overflows{
+    height: 100px;
+    overflow-x: hidden; 
+    overflow-y: scroll;
+  }
+  .colfilters{
+     position: relative;
+      width: 100%;
+      min-height: 1px;
+      padding-right: 15px;
+      padding-left: 15px;
+  }
+  .rowsafter{
+    content: "";
+    display: table;
+    clear: both;
+  }

@@ -76,7 +76,7 @@ module.exports = {
 				// Log user in
 				req.session.authenticated = true;
 				req.session.User = user;
-				res.redirect('/user/' + user.id);
+				res.redirect('/user/profile/' + user.id);
 
 			});
 		});

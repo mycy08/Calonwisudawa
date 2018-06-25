@@ -10,6 +10,37 @@ module.exports = {
     res.view('admin/addUser')
   },
   
+
+  userProfile:function(req,res,next){
+    User.findOne(req.param('id'),function(err,userProfil){
+      if(err){
+        console.log(err);
+      }
+      else{
+        return res.view('user/profile',{
+          status: 'OK',
+          title: 'Profil',
+          userProfil: userProfil
+        })
+      }
+    })
+  },
+  editProfile:function(req,res,next){
+    User.findOne(req.param('id'),function(err,editProfile){
+      if(err){
+        console.log(err);
+      }
+      else{
+        return res.view('user/edit-profile',{
+          status: 'OK',
+          title: 'Edit Profil',
+          editProfile: editProfile
+        })
+      }
+    })
+  },
+  
+  
   create:function(req,res,next){
     User.findOneByEmail(req.param('email'),function(err,user){
       if(user){

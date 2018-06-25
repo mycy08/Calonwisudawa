@@ -11,49 +11,53 @@
 <body class="background-hitam">
   <nav class="navbar navbar-expand-md background-hitam navbar-dark ">
     <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon text-white"></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon text-white"></span>
       </button>
-        <a class="navbar-brand text-white" href="#"><img src="/images/logo/logo.jpg"></img></a>
+      <a class="navbar-brand text-white" href="#">
+        <img src="/images/logo/logo.jpg"></img>
+      </a>
 
-        <div class="collapse navbar-collapse" id="navbarsExample04">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">
+      <div class="collapse navbar-collapse" id="navbarsExample04">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
               <i class="fa d-inline fa-lg fa-user-circle-o mx-1"></i>Daftar Anime</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">
-                <i class="fa d-inline fa-lg fa-user-circle-o mx-1"></i>Rekomendasi</a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fa d-inline fa-lg fa-user-circle-o mx-1"></i>Rekomendasi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
               <i class="fa d-inline fa-lg fa-user-plus mx-1"></i>Daftar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
               <i class="fa d-inline fa-lg fa-user-circle-o mx-1"></i>Login</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-        </div>
-      </nav>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
   <div class="py-2 text-center background-hitam">
     <div class="container">
       <div class="row">
@@ -67,10 +71,12 @@
     <div class="container cardsview">
       <div class="row">
         <div class="col-md-5 ">
-         <h1 class="mb-2 mt-2 text-center text-black"><%= anime.nama_anime %></h1> 
-          <img class="img-fluid d-block mb-4 w-100 h-75 img-thumbnail" src="http://localhost:1337/images/anime/<%= anime.photo_url %>"> 
+          <h1 class="mb-2 mt-2 text-center text-black">
+            <%= anime.nama_anime %>
+          </h1>
+          <img class="img-fluid d-block mb-4 w-100 h-75 img-thumbnail" src="http://localhost:1337/images/anime/<%= anime.photo_url %>">
           <button type="submit" class="btn btn-warnabiru ">Favorite</button>
-          </div>
+        </div>
         <div class="col-md-7">
           <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -79,110 +85,121 @@
             <li class="nav-item">
               <a class="nav-link" href="" data-toggle="tab" data-target="#tabtwo">Tonton</a>
             </li>
-            
+
           </ul>
           <div class="tab-content mt-2">
             <div class="tab-pane fade show active" id="tabone" role="tabpanel">
-                  <p class=""><%= anime.deskripsi %></p>
-                  <div class="card">
-                      <div class="card-header"> Informasi </div>
-                      <div class="card-body">
-                        <table>
-                          <tr>
-                            <td width='120px'>Judul</td>
-                            <td width='20px'>:</td>
-                            <td>
-                              <%= anime.nama_anime %>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Type</td>
-                            <td>:</td>
-                            <td>
-                              <%= anime.type %>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Status</td>
-                            <td>:</td>
-                            <td>
-                              <%= anime.status %>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Genre</td>
-                            <td>:</td>
-                            <td>
-                              <%  _.each(anime.genreStrings,function(genre_list){ %>
-                                <a href="#">
-                                  <%= genre_list.nama_genre %>
-                                </a>
-                                <%})%>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Tahun Terbit</td>
-                            <td>:</td>
-                            <td>
-                              <%= anime.tahun_terbit %>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </div>
+              <p class="">
+                <%= anime.deskripsi %>
+              </p>
+              <div class="card">
+                <div class="card-header"> Informasi </div>
+                <div class="card-body">
+                  <table>
+                    <tr>
+                      <td width='120px'>Judul</td>
+                      <td width='20px'>:</td>
+                      <td>
+                        <%= anime.nama_anime %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Type</td>
+                      <td>:</td>
+                      <td>
+                        <%= anime.type %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Status</td>
+                      <td>:</td>
+                      <td>
+                        <%= anime.status %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Genre</td>
+                      <td>:</td>
+                      <td>
+                        <%  _.each(anime.genreStrings,function(genre_list){ %>
+                          <a href="#">
+                            <%= genre_list.nama_genre %>
+                          </a>
+                          <%})%>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Tahun Terbit</td>
+                      <td>:</td>
+                      <td>
+                        <%= anime.tahun_terbit %>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
             </div>
             <div class="tab-pane fade " id="tabtwo" role="tabpanel">
               <div class="col-md-12">
                 <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="textcenter">Judul</th>
-                          <th class="textcenter">Episode</th>
-                          
-                          <th colspan="2" class="textcenter">Tonton</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                          <%  _.each(anime.episodes.sort(function(a, b){return a.episode - b.episode}).slice(0,10),function(episode){ %>
-                            <tr>
-                                <td class="textcenter"><%= anime.nama_anime %> Episode <%= episode.episode %></td>
-                                <td class="textcenter"><%= episode.episode %></td>
-                                <% 
+                  <thead>
+                    <tr>
+                      <th class="textcenter">Judul</th>
+                      <th class="textcenter">Episode</th>
+
+                      <th colspan="2" class="textcenter">Tonton</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%  _.each(anime.episodes.sort(function(a, b){return a.episode - b.episode}).slice(0,10),function(episode){ %>
+                      <tr>
+                        <td class="textcenter">
+                          <%= anime.nama_anime %> Episode
+                            <%= episode.episode %>
+                        </td>
+                        <td class="textcenter">
+                          <%= episode.episode %>
+                        </td>
+                        <% 
                                   if(episode.url_versi_english){%>
-                                    <td>
-                                        <button type="submit" class="btn btn-warnahijau" onclick="window.open('<%= episode.url_versi_english %>')">English</button>
-                                      </td>
-                                  <%}
+                          <td>
+                            <button type="submit" class="btn btn-warnahijau" onclick="window.open('<%= episode.url_versi_english %>')">English</button>
+                          </td>
+                          <%}
                                   else{%>
-                                    <td>
-                                        <a href="#" class="h"><button type="submit" class="btn btn-warnamerah" >English</button></a>
-                                      </td>
-                                  <%}
+                            <td>
+                              <a href="#" class="h">
+                                <button type="submit" class="btn btn-warnamerah">English</button>
+                              </a>
+                            </td>
+                            <%}
                                 %>
-                                <% 
+                              <% 
                                   if(episode.url_versi_indo){%>
-                                    <td>
-                                        <button type="submit" class="btn btn-warnahijau" onclick="window.open('<%= episode.url_versi_indo %>')">Indonesia</button>
-                                      </td>
-                                  <%}
+                                <td>
+                                  <button type="submit" class="btn btn-warnahijau" onclick="window.open('<%= episode.url_versi_indo %>')">Indonesia</button>
+                                </td>
+                                <%}
                                   else{%>
-                                    <td>
-                                        <a href="#" class="h"><button type="submit" class="btn btn-warnamerah">Indonesia</button></a>
-                                      </td>
+                                  <td>
+                                    <a href="#" class="h">
+                                      <button type="submit" class="btn btn-warnamerah">Indonesia</button>
+                                    </a>
+                                  </td>
                                   <%}
                                 %>
-                                
-                                
-                              </tr>
-                            <%})%>
-                        
-                      </tbody>
+
+
+                      </tr>
+                      <%})%>
+
+                  </tbody>
                 </table>
                 <button type="submit" class="btn btn-warnabiru">Lihat Semua Episode</button>
               </div>
             </div>
-            
-            
+
+
           </div>
         </div>
       </div>
@@ -216,11 +233,9 @@
               </div>
             </div>
             <div class="col-md-5  mt-3">
-              <h5 class="mb-1">Bintang 5</h5>
-              <h6>Banyak Ulasan</h6>
-              <div class="progress mb-1">
-                
-                <% 
+
+
+              <% 
                   var jumlahRating,
                       bintang,
                       persenBintang5=0,
@@ -282,28 +297,46 @@
                       
                       
                 %>
-                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= persenBintang5 %>%"><%= persenBintang5 %></div>
-              </div>
-              <h5 class="mb-1">Bintang 4</h5>
-              <h6>Banyak Ulasan</h6>
-              <div class="progress mb-1">
-                <div class="progress-bar progress-bar-striped" role="progressbar" style="width:<%= persenBintang4 %>%"><%= persenBintang4 %>%</div>
-              </div>
-              <h5 class="mb-1">Bintang 3</h5>
-              <h6>Banyak Ulasan</h6>
-              <div class="progress mb-1">
-                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= persenBintang3 %>%"><%= persenBintang3 %></div>
-              </div>
-              <h5 class="mb-1">Bintang 2</h5>
-              <h6>Banyak Ulasan</h6>
-              <div class="progress mb-1">
-                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= persenBintang2 %>%"><%= persenBintang2 %></div>
-              </div>
-              <h5 class="mb-1">Bintang 1</h5>
-              <h6>Banyak Ulasan</h6>
-              <div class="progress mb-1">
-                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= persenBintang1 %>%"><%= persenBintang1 %></div>
-              </div>
+                <h5 class="mb-1">Bintang 5</h5>
+                <h6>Banyak Rating
+                  <%= t_score10%>
+                </h6>
+                <div class="progress mb-1">
+                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= persenBintang5 %>%">
+                    <%= persenBintang5.toFixed(0)%> %</div>
+                </div>
+                <h5 class="mb-1">Bintang 4</h5>
+                <h6>Banyak Rating
+                  <%= t_score9+t_score8%>
+                </h6>
+                <div class="progress mb-1">
+                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width:<%= persenBintang4 %>%">
+                    <%= persenBintang4.toFixed(0) %> %</div>
+                </div>
+                <h5 class="mb-1">Bintang 3</h5>
+                <h6>Banyak Rating
+                  <%= t_score7+t_score6%>
+                </h6>
+                <div class="progress mb-1">
+                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= persenBintang3 %>%">
+                    <%= persenBintang3.toFixed(0) %> %</div>
+                </div>
+                <h5 class="mb-1">Bintang 2</h5>
+                <h6>Banyak Rating
+                  <%= t_score5+t_score4%>
+                </h6>
+                <div class="progress mb-1">
+                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= persenBintang2 %>%">
+                    <%= persenBintang2.toFixed(0) %> %</div>
+                </div>
+                <h5 class="mb-1">Bintang 1</h5>
+                <h6>Banyak Rating
+                  <%= t_score3+t_score2+t_score1%>
+                </h6>
+                <div class="progress mb-1">
+                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= persenBintang1 %>%">
+                    <%= persenBintang1.toFixed(0) %> %</div>
+                </div>
             </div>
           </div>
         </div>
@@ -320,30 +353,30 @@
     </div>
   </div>
   <div class="mb-4 ">
-      <div class="container cardsview">
-        <div class="row">
-          <div class="col-md-12 p-4">
-            <%  _.each(anime.userStrings.slice(0,3),function(user){ %>
-  
-  
-              <div class="row  border py-2 mb-2">
-                <div class="col-sm-2 text-center">
-                  <% if(user.photo_url) {%>
-                    <a href="#">
-                      <img class="d-block img-fluid mb-2" src="/images/user/<%= user.photo_url %>"> </a>
-                    <%}
+    <div class="container cardsview">
+      <div class="row">
+        <div class="col-md-12 p-4">
+          <%  _.each(anime.userStrings.slice(0,3),function(user){ %>
+
+
+            <div class="row  border py-2 mb-2">
+              <div class="col-sm-2 text-center">
+                <% if(user.photo_url) {%>
+                  <a href="#">
+                    <img class="d-block img-fluid mb-2" src="/images/user/<%= user.photo_url %>"> </a>
+                  <%}
                 else{ %>
-                      <a href="#">
-                        <img class="d-block img-fluid mb-2" src="/images/user/default.png"> </a>
-                      <%}%>
-  
-                </div>
-                <div class="col-sm-9">
-                    <h3>
-                      <%= user.nama %>
-                    </h3>
-                    <div>
-                      <%
+                    <a href="#">
+                      <img class="d-block img-fluid mb-2" src="/images/user/default.png"> </a>
+                    <%}%>
+
+              </div>
+              <div class="col-sm-9">
+                <h3>
+                  <%= user.nama %>
+                </h3>
+                <div>
+                  <%
                         var mod = user.score % 2 ;
                         if(mod==0){
                           var bintang = user.score / 2;
@@ -354,8 +387,8 @@
   
                       for(var i=0;i<bintang;i++){
                       %>
-                      <span class="fa fa-star colorbintang"></span>
-                      <%}
+                    <span class="fa fa-star colorbintang"></span>
+                    <%}
                       if(bintang==1){
                         var btg_hitam=4
                       }
@@ -373,40 +406,40 @@
                       }
                       for(var k=0;k<btg_hitam;k++){
                           %>
-                          <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
                       <%}  
                       %>
-                      
-                    </div>
-                    <% if(user.review){%>
-                      <p class="">
-                        <%= user.review %>
-                      </p>
-                      <%}
-                    else{%>
-                        <p></p>
-                        <%}%>
-    
-                  </div>
+
                 </div>
-                <%})%>
+                <% if(user.review){%>
+                  <p class="">
+                    <%= user.review %>
+                  </p>
+                  <%}
+                    else{%>
+                    <p></p>
+                    <%}%>
+
+              </div>
             </div>
-          </div>
-          <div class="col-md-12 riviewslink">
-              <a href="register.html" class="warnabiru">
-                <u>
-                  <b>Lihat Review</b>
-                </u>
-              </a>
+            <%})%>
         </div>
-        </div>
-        
-              
-        </div>
-        
       </div>
-      
+      <div class="col-md-12 riviewslink">
+        <a href="register.html">
+          <u>
+            <b>Lihat Review</b>
+          </u>
+        </a>
+      </div>
     </div>
+
+
+  </div>
+
+  </div>
+
+  </div>
   <div class="py-2 text-center background-hitam">
     <div class="container">
       <div class="row">
@@ -444,37 +477,37 @@
     </div>
   </div>
   <div class="py-5 text-center background-hitam">
-      <div class="container">
-        <div class="row ">
-          <div class="col-md-12">
-            <h1 class="mb-4 text-white">Rekomendasi Anime</h1>
-          </div>
+    <div class="container">
+      <div class="row ">
+        <div class="col-md-12">
+          <h1 class="mb-4 text-white">Rekomendasi Anime</h1>
         </div>
-        <div class="row">
-          <div class="col-md-3 col-6 p-1 ">
-            <a href="#">
-              <img class="d-block img-fluids" src="/images/anime/ID_132.jpg"> </a>
-          </div>
-          <div class="col-md-3 col-6 p-1">
-            <a href="#">
-              <img class="d-block img-fluids" src="/images/anime/ID_131.jpg"> </a>
-          </div>
-          <div class="col-md-3 col-6 p-1">
-            <a href="#">
-              <img class="d-block img-fluids" src="/images/anime/ID_133.jpg"> </a>
-          </div>
-          <div class="col-md-3 col-6 p-1">
-            <a href="#">
-              <img class="d-block img-fluids" src="/images/anime/ID_134.jpg"> </a>
-          </div>
-          <div class="col-md-12 lihatrekomendasi">
-            <a href="#">
-              Lihat Rekomendasi
-            </a>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-6 p-1 ">
+          <a href="#">
+            <img class="d-block img-fluids" src="/images/anime/ID_132.jpg"> </a>
+        </div>
+        <div class="col-md-3 col-6 p-1">
+          <a href="#">
+            <img class="d-block img-fluids" src="/images/anime/ID_131.jpg"> </a>
+        </div>
+        <div class="col-md-3 col-6 p-1">
+          <a href="#">
+            <img class="d-block img-fluids" src="/images/anime/ID_133.jpg"> </a>
+        </div>
+        <div class="col-md-3 col-6 p-1">
+          <a href="#">
+            <img class="d-block img-fluids" src="/images/anime/ID_134.jpg"> </a>
+        </div>
+        <div class="col-md-12 lihatrekomendasi">
+          <a href="#">
+            Lihat Rekomendasi
+          </a>
         </div>
       </div>
     </div>
+  </div>
   <div class="py-2 bg-dark text-white">
     <div class="container">
       <div class="row">
@@ -509,10 +542,13 @@
       </div>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
 </body>
 
 </html>
