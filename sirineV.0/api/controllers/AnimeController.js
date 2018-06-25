@@ -39,19 +39,19 @@ module.exports = {
                                 if (err) {
                                     callback(err)
                                 } else {
-                                    
-                                    anime.userStrings.push({
+                                        anime.userStrings.push({
                                         id:users.id,
                                         nama:users.nama,
                                         photo_url:users.photo_url,users,
                                         review:users.review,
                                         score:user.score,
+                                        
                                     })
                                     callback()
                                 }
                             })
                         }, function (err) { // function ini akan jalan bila semua genre_lists telah diproses
-                            
+                           
                             if (err)
                                 return res.serverError(err);
                             else {         

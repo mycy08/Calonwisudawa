@@ -20,6 +20,20 @@
   border-color: #4f70ce;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); 
 }
+.btn-warnahijau {
+	width: 100%;
+  color: #fff;
+  background-color: #07ce4a;
+  border-color:#07ce4a;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); 
+}
+.btn-warnamerah {
+	width: 100%;
+  color: #fff;
+  background-color: #ce0707;
+  border-color:#ce0707;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); 
+}
 .margintopminus{
 	margin-top: -55px;
 }
@@ -46,6 +60,10 @@
  	margin-top: -10px;
  	text-align: right;
  }
+ .riviewslink{
+  margin-top: -40px;
+  text-align: right;
+}
  .textrights{
   text-align: right;
  }
