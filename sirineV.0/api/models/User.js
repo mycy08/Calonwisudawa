@@ -73,6 +73,8 @@ module.exports = {
           });
       });
   },
+  
+  
   comparePassword : function (password, user, cb) {
     bcrypt.compare(password, user.password, function (err, match) {
 

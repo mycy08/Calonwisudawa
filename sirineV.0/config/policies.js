@@ -32,6 +32,9 @@ module.exports.policies = {
   user :{
     'login' :'flash',
     create:'flash',
+    updateProfile:'flash',
+    userProfile:['flash','authenticated'],
+    
     '*' : 'authenticated'
   }
   
