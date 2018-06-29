@@ -8,61 +8,7 @@
   </head>
 
 <body class="background-hitam">
-  <nav class="navbar navbar-expand-md background-hitam navbar-dark ">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon text-white"></span>
-      </button>
-        <a class="navbar-brand text-white " href="#"><img src="/images/logo/logo.jpg"></img></a>
-        <div class="collapse navbar-collapse" style="width:100%;" id="navbarsExample04">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mr-2">
-            <li class="nav-item active">
-              <a class="nav-link text-white" href="#">
-              <i class="fa d-inline fa-lg fa-home mxnav" ></i> Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white" href="#">
-              <i class="fa d-inline fa-lg fa-list mxnav "></i> Daftar Anime</a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white" href="#">
-              <i class="fa d-inline fa-lg fa-thumbs-o-up mxnav"></i> Rekomendasi</a>
-            </li>
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Genre
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa d-inline fa-lg fa-bell-o mxnav"></i> Notif
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">
-              <i class="fa d-inline fa-lg fa-user-circle-o mxnav"></i> <%= userProfil.nama %></a>
-            </li>
-          </ul>
-          
-        </div>
-        </div>
-      </nav>
+  
       <div class="py-2 text-center background-hitam">
         <div class="container">
           <div class="row">
@@ -84,8 +30,8 @@
       <div class="row mt-1 mb-2">
           <div class="col-md-3 ">
               <%
-                if(userProfil.photo_url){%>
-                    <img class="img-thumbnail" src="/images/user/<%=userProfil.photo_url%>">
+                if(user.photo_url){%>
+                    <img class="img-thumbnail" src="/images/user/<%=user.photo_url%>">
                 <%}
                 else{%>
                     <img class="img-thumbnail" src="/images/user/default.png">
@@ -94,21 +40,21 @@
             
           </div>
           <div class="col-md-8">
-             <h1 ><%= userProfil.nama %>
-              <a style="font-size:14px;" href="/user/edit-profile/<%= userProfil.id %>" class="warnabiru">
+             <h1 ><%= user.nama %>
+              <a style="font-size:14px;" href="/user/edit-profile/<%= user.id %>" class="warnabiru">
                 <u>
                   <b>Edit</b>
                 </u>
                 </a>
               </h1>
-             <h4><i class="fa d-inline fa-envelope-o mxnav "></i> <%= userProfil.email %></h4>
-             <h4><i class="fa d-inline fa-phone mx-1 "></i><%= userProfil.no_hp %></h4>
+             <h4><i class="fa d-inline fa-envelope-o mxnav "></i> <%= user.email %></h4>
+             <h4><i class="fa d-inline fa-phone mx-1 "></i><%= user.no_hp %></h4>
              <%
-                if(userProfil.tgl_lahir){%>
-                    <h4 ><i class="fa d-inline fa-calendar-o mxnav "></i><i id="tgl"><%= userProfil.tgl_lahir %></i> </h4>
+                if(user.tgl_lahir){%>
+                    <h4 ><i class="fa d-inline fa-calendar-o mxnav "></i><i id="tgl"><%= user.tgl_lahir %></i> </h4>
                 <% }
                 else{%>
-                    <h4><i class="fa d-inline fa-calendar-o mxnav "></i><i id="tgl">19-01-1990</h4>
+                    <h4><i class="fa d-inline fa-calendar-o mxnav "></i><i> 19 Juni 1990</h4>
                 <% }
              %>
              
@@ -128,66 +74,36 @@
     <div class="mb-2 ">
     <div class="container cardsview ">
       <div class="row">
+        
         <div class="col-md-12 p-4 ">
-          <div class="row border py-2">
-            <div class="col-sm-2 text-center">
-              <a href="#">
-                <img class="d-block img-fluid mb-2" src="image\onepiece.jpg"> </a>
-            </div>
-            <div class="col-sm-9">
-              <h3 class="mx-1">Nama Profil</h3>
-              <div class="mx-1">
-                <span class="fa fa-star colorbintang"></span>
-                <span class="fa fa-star colorbintang"></span>
-                <span class="fa fa-star colorbintang"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-              </div>
-             <h6><a href="#"><i class="fa fa-gear mxnav "></i> Pengaturan</a></h6>
-             <h6><a href="#"><i class="fa fa-trash-o mxnav "></i> Hapus</a></h6>
-            </div>
-          </div>
+            <% _.each(user.anfavStrings,function(favorit){%>
+              
+              <div class="row border py-2">
+                  <div class="col-sm-2 text-center">
+                    <a href="/anime/detailAnime/<%=favorit.id%>">
+                      <img class="d-block img-fluid mb-2" src="/images/anime/<%= favorit.photo_url%> "> </a>
+                  </div>
+                  <div class="col-sm-7 ">
+                    <h3 class="mx-1"><a href="/anime/detailAnime/<%=favorit.id%>"><%= favorit.nama_anime%></a></h3>
+                    <p style="text-align: justify">
+                        <%= favorit.deskripsi%>
+                    </p>
+                    
+                  </div>
+                  <div class="col-sm-3  text-center mt-3">
+                   <a href="/anime_favorit/delete?id=<%= favorit.id_fav %>&id_user=<%= req.session.User.id %>" ><i class="fa fa-heart fa-3x mxnav colorlove " ></i></a>
+                  </div>
+                </div>
+            <%})%>
+          
         </div>
       </div>
     </div>
   </div>
-   <div class="py-2 bg-dark text-white">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-9">
-          <p class="lead">Sign up to our newsletter for the latest news</p>
-          <form class="form-inline">
-            <div class="form-group">
-              <input type="email" class="form-control" placeholder="Your e-mail here"> </div>
-            <button type="submit" class="btn btn-primary ml-3">Subscribe</button>
-          </form>
-        </div>
-        <div class="col-4 col-md-1 align-self-center">
-          <a href="https://www.facebook.com" target="_blank">
-            <i class="fa fa-fw fa-facebook fa-3x text-white"></i>
-          </a>
-        </div>
-        <div class="col-4 col-md-1 align-self-center">
-          <a href="https://twitter.com" target="_blank">
-            <i class="fa fa-fw fa-twitter fa-3x text-white"></i>
-          </a>
-        </div>
-        <div class="col-4 col-md-1 align-self-center">
-          <a href="https://www.instagram.com" target="_blank">
-            <i class="fa fa-fw fa-instagram text-white fa-3x"></i>
-          </a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 mt-3 text-center">
-          <p>© Copyright 2017 Pingendo - All rights reserved.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+   
   <script>
       function tanggal() {
-    var d = new Date("<%= userProfil.tgl_lahir %>");
+    var d = new Date("<%= user.tgl_lahir %>");
     
 
     var hari = d.getDay();      

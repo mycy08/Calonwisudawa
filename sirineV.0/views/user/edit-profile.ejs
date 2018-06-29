@@ -7,61 +7,7 @@
         </head>
       
       <body class="background-hitam">
-      <nav class="navbar navbar-expand-md background-hitam navbar-dark ">
-          <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon text-white"></span>
-            </button>
-              <a class="navbar-brand text-white " href="#"><img src="/images/logo/logo.jpg"></img></a>
-              <div class="collapse navbar-collapse" style="width:100%;" id="navbarsExample04">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mr-2">
-                  <li class="nav-item active">
-                    <a class="nav-link text-white" href="#">
-                    <i class="fa d-inline fa-lg fa-home mxnav" ></i> Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item ">
-                    <a class="nav-link text-white" href="#">
-                    <i class="fa d-inline fa-lg fa-list mxnav "></i> Daftar Anime</a>
-                  </li>
-                  <li class="nav-item ">
-                    <a class="nav-link text-white" href="#">
-                    <i class="fa d-inline fa-lg fa-thumbs-o-up mxnav"></i> Rekomendasi</a>
-                  </li>
-                  
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Genre
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </li>
-                  <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                  </form>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa d-inline fa-lg fa-bell-o mxnav"></i> Notif
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  <li class="nav-item">
-                    <a class="nav-link text-white" href="#">
-                    <i class="fa d-inline fa-lg fa-user-circle-o mxnav"></i> <%= editProfile.nama %></a>
-                  </li>
-                </ul>
-                
-              </div>
-              </div>
-            </nav>
+      
         <div class="py-2 text-center background-hitam">
           <div class="container">
             <div class="row">
@@ -144,40 +90,7 @@
             </div>
             </div>
           </div>
-          <div class="py-2 bg-dark text-white">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-9">
-                <p class="lead">Sign up to our newsletter for the latest news</p>
-                <form class="form-inline">
-                  <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Your e-mail here"> </div>
-                  <button type="submit" class="btn btn-primary ml-3">Subscribe</button>
-                </form>
-              </div>
-              <div class="col-4 col-md-1 align-self-center">
-                <a href="https://www.facebook.com" target="_blank">
-                  <i class="fa fa-fw fa-facebook fa-3x text-white"></i>
-                </a>
-              </div>
-              <div class="col-4 col-md-1 align-self-center">
-                <a href="https://twitter.com" target="_blank">
-                  <i class="fa fa-fw fa-twitter fa-3x text-white"></i>
-                </a>
-              </div>
-              <div class="col-4 col-md-1 align-self-center">
-                <a href="https://www.instagram.com" target="_blank">
-                  <i class="fa fa-fw fa-instagram text-white fa-3x"></i>
-                </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 mt-3 text-center">
-                <p>© Copyright 2017 Pingendo - All rights reserved.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+          
         <script>
                 function myFunction() {
                     document.getElementById("myDate").value = "<%=  editProfile.tgl_lahir%>";

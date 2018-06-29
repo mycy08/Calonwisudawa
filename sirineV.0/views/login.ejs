@@ -31,7 +31,7 @@
                         </u>
                       </a>
                     </h6>
-                    <form action="/session/create" >
+                    <form method="post" action="/session/create" >
                       <% if(flash && flash.err) { %>
                         <ul class="alert alert-success">
                       <% Object.keys(flash.err).forEach(function(error) { %>

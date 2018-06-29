@@ -10,10 +10,18 @@ var bcrypt = require('bcrypt');
 module.exports = {
 
 	daftar:function(req,res){
-		res.view('daftar')
+		res.view('daftar',{
+			
+				layout: false
+			
+		})
 	  },
 	  login:function(req,res){
-		res.view('login')
+		res.view('login',{
+			
+			layout: false
+		
+		})
 	  },
 
 	create: function(req, res, next) {
@@ -73,7 +81,7 @@ module.exports = {
 				// Log user in
 				req.session.authenticated = true;
 				req.session.User = user;
-				res.redirect('/user/profile/' + user.id);
+				res.redirect('/user/profile/'+user.id);
 
 			});
 		});

@@ -12,18 +12,43 @@ module.exports = {
   
 
   userProfile:function(req,res,next){
-    User.findOne(req.param('id'),function(err,userProfil){
-      if(err){
-        console.log(err);
+    User.findOne(req.param('id')).populateAll().exec(function(err,user){
+      if (err){
+        return res.serverError(err);
+      } else {
+          user.anfavStrings = []
+          async.each(user.anime_favorits, function(anfav,callback){
+              Anime.findOne({id:anfav.owner_anime}).exec(function(err,anfavs){
+                if (err) {
+                  callback(err)
+                } else {
+                  
+                  user.anfavStrings.push({
+                      id_fav:anfav.id,
+                      id:anfavs.id,
+                      nama_anime:anfavs.nama_anime,
+                      photo_url :anfavs.photo_url,
+                      deskripsi :anfavs.deskripsi
+                    })
+                  callback()
+                }
+              })
+      }, function(err){ // function ini akan jalan bila semua genre_lists telah diproses
+              
+              if (err){
+                return res.serverError(err);
+              }
+              else{
+                res.view("user/profile", {
+                                    
+                  status: 'OK',
+                  title: 'Detail Anime',
+                  user: user
+              })      
+              }
+          })
       }
-      else{
-        return res.view('user/profile',{
-          status: 'OK',
-          title: 'Profil',
-          userProfil: userProfil
-        })
-      }
-    })
+  })
   },
   editProfile:function(req,res,next){
     User.findOne(req.param('id'),function(err,editProfile){
@@ -116,26 +141,7 @@ module.exports = {
                 }
               });
             });
-            // console.log("ini pass "+passbaru)
-            // var passObj={
-            //   password : hash
-            // }
-            // User.update(req.param('id'),passObj,function(err){
-    
-            //       if(err){
-            //         console.log(err);
-            //       }
-            //       else{
-            //         var ubahPass = [
-            //           'Password berhasil diubah',
-            //         ]
-            //         req.session.flash = {
-            //           err: ubahPass
-            //         // If error redirect back to sign-up page
-            //         }
-            //         res.redirect('/user/profile/' + req.param('id'));
-            //       }
-            // })
+            
           }
         })
       }

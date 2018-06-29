@@ -28,7 +28,11 @@ module.exports.policies = {
 
  '*' :"flash",
   
-
+  anime_favorit:{
+    tambah:'authenticated',
+    '*' : 'authenticated'
+  },
+  
   user :{
     'login' :'flash',
     create:'flash',

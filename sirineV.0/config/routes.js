@@ -48,6 +48,10 @@ module.exports.routes = {
     controller:"anime",
     action:"detailAnime"
  } ,
+ 'GET /user/anime-terbaru/':{
+  controller:"anime",
+  action:"animeTerbaru"
+} ,
  'GET /user/profile/:id': {
   controller: 'user',
   action: "userProfile",

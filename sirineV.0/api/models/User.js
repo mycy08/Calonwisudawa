@@ -47,6 +47,10 @@ module.exports = {
       collection:'rating',
       via:'id_user'
     },
+    anime_favorits:{
+      collection:'anime_favorit',
+      via:'owner_user'
+    },
     toJSON: function(){
       var obj = this.toObject();
       delete obj.password;

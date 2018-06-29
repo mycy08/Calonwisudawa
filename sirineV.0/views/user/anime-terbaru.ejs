@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> 
+  <link rel="stylesheet" href="styles/custome.css" type="text/css">  
+  </head>
+<body class="background-hitam">
+  <nav class="navbar navbar-expand-md background-hitam navbar-dark ">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon text-white"></span>
+      </button>
+        <a class="navbar-brand text-white " href="#"><img src="/images/logo/logo.jpg"></img></a>
+        <div class="collapse navbar-collapse" style="width:100%;" id="navbarsExample04">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mr-2">
+            <li class="nav-item active">
+              <a class="nav-link text-white" href="#">
+              <i class="fa d-inline fa-lg fa-list mxnav" ></i>&nbsp;Daftar Anime<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link text-white" href="#">
+              <i class="fa d-inline fa-lg fa-thumbs-o-up mxnav"></i>&nbsp;Rekomendasi</a>
+            </li>
+            
+            <li class="nav-item dropdown ">
+              <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Genre
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa d-inline fa-lg fa-bell-o mxnav"></i> Notif
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+              </li>
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa d-inline fa-lg fa-user-circle-o mxnav"></i>&nbsp;<%= req.session.User.nama %>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#"><i class="fa d-inline fa-lg fa-edit mxnav"></i>&nbsp;Edit Profile</a>
+                <a class="dropdown-item" href="#"><i class="fa d-inline fa-lg fa-heart colorlove mxnav"></i>&nbsp;Anime Favorite</a>
+                <a class="dropdown-item" href="#"><i class="fa d-inline fa-lg fa-sign-out mxnav"></i>&nbsp;Logout</a>
+              </div>
+              </li>
+          </ul>
+        </div>
+        </div>
+      </nav>
+       <div class="py-2 text-center background-hitam">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="mb-2 mt-2 text-white">Anime Terbaru</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="py-1">
+    <div class="container cardsview">
+      <div class="row ml-2">
+        
+            <%
+            _.each(catArr.slice(0,3),function(episodes){ %>
+              <div class="col-md3 mr-1 mb-1 p-2 border">
+                <div class="col-md-12 ">    
+                  <a href="#">
+                  <img class="d-block img-fluid" src="/images/anime/<%= episodes.photo_url %>"> </a>
+                </div>
+                <h5 class="textcenter"><%= episodes.nama_anime %></h5>
+                <h5 class="textcenter h5style"><%= episodes.episode %></h5>
+                <div class="ratingdanlove">
+                  <h6 class="textleft h5style " style="width:50%;"><i class="fa d-inline fa-star colorbintang"></i>&nbsp;Rating</h6>
+                  <h6 class="textleft h5style "style="width:50%;"><i class="fa d-inline fa-heart colorlove"></i>&nbsp;Favorite</h6>
+                </div>
+                <button type="submit" class="btn btn-warnabiru "><i class="fa d-inline fa-heart colorlove"></i>&nbsp;Tambah Anime Favorite</button>
+              </div>
+              <%})
+            %>
+        </div>
+        <center>
+        <div class="col-md-2 ">
+          <ul class="pagination textcenter" >
+            <li class="page-item">
+              <a class="page-link" href="#">
+                <span>«</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">3</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">4</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">
+                <span>»</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+       </div>
+      </center>
+      </div>
+      
+    </div>
+       <div class="py-2 bg-dark text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+            <p class="lead">Download Sirine Mobile</p>
+            <form class="form-inline">
+              <div class="form-group">
+                <button type="submit" class="btn btn-warnabiru"><i class="fa fa-fw fa-download fa-1x text-white"></i>&nbsp;Download disini</button>
+                </div>
+            </form>
+          </div>
+          <div class="col-4 col-md-1 align-self-center">
+            <a href="https://www.facebook.com/kelvin.angviesta" target="https://www.facebook.com">
+              <i class="fa fa-fw fa-facebook fa-3x text-white"></i>
+            </a>
+          </div>
+          <div class="col-4 col-md-1 align-self-center">
+            <a href="https://www.instagram.com/kangviesta/" target="https://www.instagram.com">
+              <i class="fa fa-fw fa-instagram text-white fa-3x"></i>
+            </a>
+          </div>
+          <div class="col-4 col-md-1 align-self-center">
+            <a href="https://id.linkedin.com/in/kelvin-angviesta-12a432109" target="https://twitter.com">
+              <i class="fa fa-fw fa-linkedin fa-3x text-white"></i>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mt-3 text-center">
+            <p>© Copyright 2018 TugasAkhir - Aplikasi Rekomendasi Anime dengan Metode ICHM.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+</body>
+
+</html>

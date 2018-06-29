@@ -32,6 +32,10 @@ module.exports = {
       collection:'episode_anime',
       via :'id_anime'
     },
+    anime_favorits:{
+      collection:'anime_favorit',
+      via :'owner_anime'
+    },
     genre_lists:{
       collection:'genre_list',
       via:'id_anime'

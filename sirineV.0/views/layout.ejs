@@ -33,13 +33,158 @@
     <link rel="stylesheet" href="/styles/font-awesome.min.css">
     <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/styles/star-rating.css">
     <link rel="stylesheet" href="/styles/theme.css">
     <link rel="stylesheet" href="/styles/tm.css">
     <!--STYLES END-->
   </head>
 
   <body>
+      <%
+      if(req.session.User){
+    %>
+    <nav class="navbar navbar-expand-md background-hitam navbar-dark ">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon text-white"></span>
+        </button>
+          <a class="navbar-brand text-white " href="#"><img src="/images/logo/logo.jpg"></img></a>
+          <div class="collapse navbar-collapse" style="width:100%;" id="navbarsExample04">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mr-2">
+              <li class="nav-item active">
+                <a class="nav-link text-white" href="#">
+                <i class="fa d-inline fa-lg fa-list mxnav" ></i>&nbsp;Daftar Anime<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link text-white" href="#">
+                <i class="fa d-inline fa-lg fa-thumbs-o-up mxnav"></i>&nbsp;Rekomendasi</a>
+              </li>
+              
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Genre
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              <form class="form-inline my-2 my-lg-0" action="/anime/search/" method="POST">
+                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa d-inline fa-lg fa-bell-o mxnav"></i> Notif
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa d-inline fa-lg fa-user-circle-o mxnav"></i>&nbsp;<%= req.session.User.nama%>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/user/profile/<%= req.session.User.id %>"><i class="fa d-inline fa-lg fa-user-circle-o mxnav"></i>&nbsp;Profile</a>
+                  <a class="dropdown-item" href="/user/profile/<%= req.session.User.id %>"><i class="fa d-inline fa-lg fa-heart colorlove mxnav"></i>&nbsp;Anime Favorite</a>
+                  <a class="dropdown-item" href="/session/destroy/"><i class="fa d-inline fa-lg fa-sign-out mxnav"></i>&nbsp;Logout</a>
+                </div>
+                </li>
+            </ul>
+            
+          </div>
+          </div>
+        </nav>
+        <%}
+        else{%>
+          <nav class="navbar navbar-expand-md background-hitam navbar-dark ">
+              <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon text-white"></span>
+                </button>
+                  <a class="navbar-brand text-white " href="#"><img src="/images/logo/logo.jpg"></img></a>
+                  <div class="collapse navbar-collapse" style="width:100%;" id="navbarsExample04">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mr-2">
+                      <li class="nav-item active">
+                        <a class="nav-link text-white mr-1" href="#">
+                        <i class="fa d-inline fa-lg fa-list mxnav" ></i>&nbsp;Daftar Anime<span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item ">
+                        <a class="nav-link text-white mr-1" href="#">
+                        <i class="fa d-inline fa-lg fa-thumbs-o-up mxnav"></i>&nbsp;Rekomendasi</a>
+                      </li>
+                      
+                      <li class="nav-item dropdown mr-1 ">
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Genre
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </li>
+                      <form class="form-inline my-2 my-lg-0" action="/anime/search/" method="POST">
+                        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                      </form>
+                      <li class="nav-item mr-1">
+                        <a class="nav-link text-white" href="/register">
+                        <i class="fa d-inline fa-lg fa-user-plus mxnav"></i>&nbsp;Daftar</a>
+                      </li>
+                      <li class="nav-item ">
+                        <a class="nav-link text-white" href="/login">
+                        <i class="fa d-inline fa-lg fa-user-circle-o mxnav"></i>&nbsp;Login</a>
+                      </li>
+                    </ul>
+                    
+                  </div>
+                  </div>
+                </nav>
+          <%}%>
     <%- body %>
+    <div class="py-2 bg-dark text-white">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9">
+              <p class="lead">Download Sirene Mobile</p>
+              <form class="form-inline">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-warnabiru"><i class="fa fa-fw fa-download fa-1x text-white"></i>&nbsp;Download disini</button>
+                  </div>
+              </form>
+            </div>
+            <div class="col-4 col-md-1 align-self-center">
+              <a href="https://www.facebook.com/kelvin.angviesta" target="https://www.facebook.com">
+                <i class="fa fa-fw fa-facebook fa-3x text-white"></i>
+              </a>
+            </div>
+            <div class="col-4 col-md-1 align-self-center">
+              <a href="https://www.instagram.com/kangviesta/" target="https://www.instagram.com">
+                <i class="fa fa-fw fa-instagram text-white fa-3x"></i>
+              </a>
+            </div>
+            <div class="col-4 col-md-1 align-self-center">
+              <a href="https://id.linkedin.com/in/kelvin-angviesta-12a432109" target="https://twitter.com">
+                <i class="fa fa-fw fa-linkedin fa-3x text-white"></i>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mt-3 text-center">
+              <p>© Copyright 2018 TugasAkhir - Aplikasi Rekomendasi Anime dengan Metode ICHM.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
 
 
 
@@ -94,11 +239,14 @@
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/bootstrap.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery-3.2.1.slim.min.js"></script>
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <script src="/js/popper.min.js"></script>
+    <script src="/js/star-rating.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>
