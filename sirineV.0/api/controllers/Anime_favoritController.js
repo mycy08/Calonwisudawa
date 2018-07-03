@@ -7,7 +7,7 @@
 
 module.exports = {
 	tambah:function(req,res,next){
-    Anime_favorit.findOne({ like: { animes: '%'+req.param('id_anime')+'%' }}).where({users : req.param('id_user')}).exec(function (err,search){
+    Anime_favorit.findOne({  id_anime: req.param('id_anime') }).where({users : req.param('id_user')}).exec(function (err,search){
         if (err) {
             return res.serverError(err);
         }
@@ -17,8 +17,8 @@ module.exports = {
               var AfObj={
                 owner_anime:req.param('id_anime'),
                 owner_user:req.param('id_user'),
-                animes:req.param('id_anime'),
-                users:req.param('id_user')
+                id_anime : req.param('id_anime'),
+                id_user : req.param('id_user')
               }
               Anime_favorit.create(AfObj,function(err,favorit){
                 if(err){

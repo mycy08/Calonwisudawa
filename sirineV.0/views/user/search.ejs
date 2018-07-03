@@ -20,13 +20,13 @@
             <% _.each(search,function(search){%>
               <div class="row border py-2">
                   <div class="col-sm-2 text-center">
-                    <a href="/anime/detailAnime/<%=search.id%>">
+                    <a href="/detail-anime/<%=search.id%>">
                       <img class="d-block img-fluid mb-2" src="/images/anime/<%= search.photo_url%> "> </a>
                   </div>
                   <div class="col-sm-7 " >
-                    <h3 class="mx-1"><a href="/anime/detailAnime/<%=search.id%>"><%= search.nama_anime%></a></h3>
+                    <h3 class="mx-1"><a href="/detail-anime/<%=search.id%>"><%= search.nama_anime%></a></h3>
                     <p style="text-align: justify"  >
-                        <%= search.deskripsi.substring(0,500)%> ... <a href="/anime/detailAnime/<%=search.id%>"> Lihat Selengkapnya</a>
+                        <%= search.deskripsi.substring(0,500)%> ... <a href="/detail-anime/<%=search.id%>"> Lihat Selengkapnya</a>
                     </p>
                   </div>
                   <% 

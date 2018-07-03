@@ -9,6 +9,57 @@ module.exports = {
 	add:function(req,res){
         res.view('admin/addRating')
     },
+    tambahRating:function(req,res){
+       
+        Rating.findOne({id_anime:req.param('id_anime')}).where({id_user:req.param('id_user')}).exec(function(err,rating){
+            if (err) {
+                return res.serverError(err);
+            }
+            else{
+                if(!rating){
+                    var ratingObj={
+                        owner_anime:req.param('id_anime'),
+                        owner_user:req.param('id_user'),
+                        id_anime : req.param('id_anime'),
+                        id_user : req.param('id_user'),
+                        score:req.param('score'),
+                        review:req.param('review')
+                    }
+                  Rating.create(ratingObj,function(err,ratings){
+                    if(err){
+                      var failedFavorit = [
+                        'Ada Kesalahan pada Server'
+                      ]
+                      req.session.flash = {
+                        err: failedFavorit
+                      }
+                    }
+                    else{
+                      var successFavorit = [
+                        'Anime berhasil di favoritkan'
+                      ]
+                      req.session.flash = {
+                        err: successFavorit
+                      }
+                      res.json(ratings)
+                      //res.redirect('/detail-anime/'+req.param('id_anime'));
+                      return
+                    }
+                  })
+                }
+                else{
+                  var failedFavorit = [
+                    'Anime sudah di favoritkan'
+                  ]
+                  req.session.flash = {
+                    err: failedFavorit
+                  }
+                  res.redirect('/detail-anime/'+req.param('id_anime'));
+                  return
+                }
+            }
+        })
+    },
     findall: function (req, res) {
         console.log("Inside findall..............");
 

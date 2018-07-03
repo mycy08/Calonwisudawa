@@ -43,8 +43,12 @@ module.exports.routes = {
     controller: 'session',
     action: "login",
   },
+  'GET /anime-terbaru/:page': {
+    controller: 'anime',
+    action: "animeTerbaru",
+  },
   
-  'GET /anime/detailAnime/:id':{
+  'GET /detail-anime/:id':{
     controller:"anime",
     action:"detailAnime"
  } ,

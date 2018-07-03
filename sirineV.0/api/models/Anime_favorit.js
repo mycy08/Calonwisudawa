@@ -16,11 +16,11 @@ module.exports = {
       model:'user',
       required:true
     },
-    animes:{
-      type:"string"
+    id_anime:{
+      type:'string'
     },
-    users:{
-      type:"string"
+    id_user:{
+      type:'string'
     },
     notifikasi:{
       type:'string'

@@ -80,11 +80,11 @@
               
               <div class="row border py-2">
                   <div class="col-sm-2 text-center">
-                    <a href="/anime/detailAnime/<%=favorit.id%>">
+                    <a href="/detail-anime/<%=favorit.id%>">
                       <img class="d-block img-fluid mb-2" src="/images/anime/<%= favorit.photo_url%> "> </a>
                   </div>
                   <div class="col-sm-7 ">
-                    <h3 class="mx-1"><a href="/anime/detailAnime/<%=favorit.id%>"><%= favorit.nama_anime%></a></h3>
+                    <h3 class="mx-1"><a href="/detail-anime/<%=favorit.id%>"><%= favorit.nama_anime%></a></h3>
                     <p style="text-align: justify">
                         <%= favorit.deskripsi%>
                     </p>
@@ -106,7 +106,7 @@
     var d = new Date("<%= user.tgl_lahir %>");
     
 
-    var hari = d.getDay();      
+    var hari = d.getDate();      
     var month = new Array();
     month[0] = "Januari";
     month[1] = "Febuari";

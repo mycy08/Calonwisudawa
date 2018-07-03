@@ -8,13 +8,19 @@
 module.exports = {
 
   attributes: {
-    id_user:{
+    owner_user:{
       model:'user',
       required:true
     },
-    id_anime:{
+    owner_anime:{
       model:'anime',
       required:'string'
+    },
+    id_user:{
+      type:'string'
+    },
+    id_anime:{
+      type:'string'
     },
     score:{
       type:'string'
