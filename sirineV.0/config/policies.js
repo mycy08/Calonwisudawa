@@ -32,6 +32,12 @@ module.exports.policies = {
     tambah:'authenticated',
     '*' : 'authenticated'
   },
+  anime:{
+    search:'flash'
+  },
+  rating:{
+    tambahRating:'flash'
+  },
   
   user :{
     'login' :'flash',

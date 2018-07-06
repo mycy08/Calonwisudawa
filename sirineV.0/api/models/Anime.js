@@ -43,7 +43,7 @@ module.exports = {
     
     ratings:{
       collection:'rating',
-      via:'id_anime'
+      via:'owner_anime'
     }
   },
   connection:'database'

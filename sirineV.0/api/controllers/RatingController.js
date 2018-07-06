@@ -27,32 +27,32 @@ module.exports = {
                     }
                   Rating.create(ratingObj,function(err,ratings){
                     if(err){
-                      var failedFavorit = [
+                      var failedRating = [
                         'Ada Kesalahan pada Server'
                       ]
                       req.session.flash = {
-                        err: failedFavorit
+                        err: failedRating
                       }
                     }
                     else{
-                      var successFavorit = [
-                        'Anime berhasil di favoritkan'
+                      var successRating = [
+                        'Review telah berhasil diberikan'
                       ]
                       req.session.flash = {
-                        err: successFavorit
+                        err: successRating
                       }
-                      res.json(ratings)
-                      //res.redirect('/detail-anime/'+req.param('id_anime'));
+                      
+                      res.redirect('/detail-anime/'+req.param('id_anime'));
                       return
                     }
                   })
                 }
                 else{
-                  var failedFavorit = [
-                    'Anime sudah di favoritkan'
+                  var failedRating = [
+                    'Anime sudah diberi Rating'
                   ]
                   req.session.flash = {
-                    err: failedFavorit
+                    err: failedRating
                   }
                   res.redirect('/detail-anime/'+req.param('id_anime'));
                   return

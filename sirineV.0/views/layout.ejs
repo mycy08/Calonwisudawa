@@ -52,7 +52,7 @@
           <div class="collapse navbar-collapse" style="width:100%;" id="navbarsExample04">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mr-2">
               <li class="nav-item active">
-                <a class="nav-link text-white" href="#">
+                <a class="nav-link text-white" href="/daftar-anime/1">
                 <i class="fa d-inline fa-lg fa-list mxnav" ></i>&nbsp;Daftar Anime<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item ">
@@ -60,18 +60,21 @@
                 <i class="fa d-inline fa-lg fa-thumbs-o-up mxnav"></i>&nbsp;Rekomendasi</a>
               </li>
               
-              <li class="nav-item dropdown ">
+              <li class="nav-item dropdown  ">
                 <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Genre
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+                <ul class="dropdown-menu scrollable-menu" role="menu">
+                  <%
+                    _.each(genre,function(genre){%>
+                      <li><a class="dropdown-item" href="/genre/<%= genre.id %>"><%= genre.nama_genre %></a></li>
+                    <%})
+                  %>
+                  
+                  
+              </ul>
               </li>
-              <form class="form-inline my-2 my-lg-0" action="/anime/search/" method="POST">
+              <form class="form-inline my-2 my-lg-0" action="/search/" method="POST">
                 <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
@@ -91,8 +94,7 @@
                     <i class="fa d-inline fa-lg fa-user-circle-o mxnav"></i>&nbsp;<%= req.session.User.nama%>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/user/profile/<%= req.session.User.id %>"><i class="fa d-inline fa-lg fa-user-circle-o mxnav"></i>&nbsp;Profile</a>
-                  <a class="dropdown-item" href="/user/profile/<%= req.session.User.id %>"><i class="fa d-inline fa-lg fa-heart colorlove mxnav"></i>&nbsp;Anime Favorite</a>
+                  <a class="dropdown-item" href="/profile/<%= req.session.User.id %>"><i class="fa d-inline fa-lg fa-user-circle-o mxnav"></i>&nbsp;Profile</a>
                   <a class="dropdown-item" href="/session/destroy/"><i class="fa d-inline fa-lg fa-sign-out mxnav"></i>&nbsp;Logout</a>
                 </div>
                 </li>
@@ -112,7 +114,7 @@
                   <div class="collapse navbar-collapse" style="width:100%;" id="navbarsExample04">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mr-2">
                       <li class="nav-item active">
-                        <a class="nav-link text-white mr-1" href="#">
+                        <a class="nav-link text-white mr-1" href="/daftar-anime/1">
                         <i class="fa d-inline fa-lg fa-list mxnav" ></i>&nbsp;Daftar Anime<span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item ">
@@ -120,18 +122,21 @@
                         <i class="fa d-inline fa-lg fa-thumbs-o-up mxnav"></i>&nbsp;Rekomendasi</a>
                       </li>
                       
-                      <li class="nav-item dropdown mr-1 ">
-                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Genre
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                      </li>
-                      <form class="form-inline my-2 my-lg-0" action="/anime/search/" method="POST">
+                      <li class="nav-item dropdown  ">
+                          <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Genre
+                          </a>
+                          <ul class="dropdown-menu scrollable-menu" role="menu">
+                            <%
+                              _.each(genre,function(genre){%>
+                                <li><a class="dropdown-item" href="/genre/<%= genre.id %>"><%= genre.nama_genre %></a></li>
+                              <%})
+                            %>
+                            
+                            
+                        </ul>
+                        </li>
+                      <form class="form-inline my-2 my-lg-0" action="/search/" method="POST">
                         <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                       </form>

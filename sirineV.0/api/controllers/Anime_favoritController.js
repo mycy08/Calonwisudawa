@@ -7,7 +7,7 @@
 
 module.exports = {
 	tambah:function(req,res,next){
-    Anime_favorit.findOne({  id_anime: req.param('id_anime') }).where({users : req.param('id_user')}).exec(function (err,search){
+    Anime_favorit.findOne({  id_anime: req.param('id_anime') }).where({id_user : req.param('id_user')}).exec(function (err,search){
         if (err) {
             return res.serverError(err);
         }
@@ -36,7 +36,7 @@ module.exports = {
                   req.session.flash = {
                     err: successFavorit
                   }
-                  res.redirect('/user/profile/'+req.param('id_user'));
+                  res.redirect('/profile/'+req.param('id_user'));
                   return
                 }
               })
@@ -48,7 +48,7 @@ module.exports = {
               req.session.flash = {
                 err: failedFavorit
               }
-              res.redirect('/user/profile/'+req.param('id_user'));
+              res.redirect('/profile/'+req.param('id_user'));
               return
             }
         }
@@ -59,7 +59,7 @@ delete:function(req,res){
       if(err){
           res.send(500,{error:'Database error'})
       }
-      res.redirect('/user/profile/'+req.param('id_user'));
+      res.redirect('/profile/'+req.param('id_user'));
   })
 }
 };

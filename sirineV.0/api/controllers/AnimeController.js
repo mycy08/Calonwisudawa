@@ -28,8 +28,6 @@ module.exports = {
          var hariFrom = d.setDate(d.getDate() - 3)
         var dateFrom = d.getFullYear() + "-" + 06 + "-" + 23
         var dateTo = d.getFullYear() + "-" + 06 + "-" + 25
-        
-        
             var perPage = 12
             if(!req.params.page){
                 var page =1
@@ -45,99 +43,20 @@ module.exports = {
                 .limit(perPage)
                 .populateAll()
                 .exec(function(err, episode) {
-                    Episode_anime.count().exec(function(err, count) {
-                        if (err) return next(err)
-                        res.view('user/anime-terbaru/', {
-                            title : "Anime Terbaru",
-                            episode: episode,
-                            current: page,
-                            pages: Math.ceil(count / perPage)
+                    Genre.find().exec(function(err,genre){
+                        Episode_anime.count().exec(function(err, count) {
+                            if (err) return next(err)
+                            res.view('user/anime-terbaru/', {
+                                title : "Anime Terbaru",
+                                episode: episode,
+                                genre:genre,
+                                current: page,
+                                pages: Math.ceil(count / perPage)
+                            })
                         })
                     })
-
-                    // return nestedPop(episode, {
-                    //     anime: [
-                    //         'episodes',
-                    //         'id_anime',
-                    //     ]
-                    // }).then(function(episode) {
-                    //     console.log(episode.id_anime)
-                    //     res.json(episode)
-                    // }).catch(function(err) {
-                    //     throw err;
-                    // });
-                });
                     
-            //         episode.animeStrings = []
-            //         async.each(episode,function(anime,callback){
-            //             //console.log(anime.id_anime.id)
-            //             Anime.findOne({ id: anime.id_anime.id }).exec(function (err, anim) {
-            //                 //console.log(anim)
-            //                 if (err) {
-            //                     callback(err)
-            //                 } else {
-            //                     episode.animeStrings.push({
-            //                         id: anim.id,
-            //                         nama_anime: anim.nama_anime,
-            //                         // photo_url: users.photo_url, users,
-            //                         // review: user.review,
-            //                         // score: user.score,
-
-            //                     })
-            //                     callback()
-            //                 }
-            //             })
-            //         }, function (err) { // function ini akan jalan bila semua genre_lists telah diproses
-            //             console.log(episode)
-            //             if (err)
-            //                 return res.serverError(err);
-            //             else {
-            //                 res.json(episode);
-            //                 // res.view("user/detail-anime/", {
-
-            //                 //     status: 'OK',
-            //                 //     title: 'Detail Anime',
-            //                 //     anime: anime
-            //                 // })
-            //             }
-            //         })
-                
-            // })
-                        
-                                   
-        //     Episode_anime.find({limit:10}).where({ createdAt: { '>=': dateFrom, '<=': dateTo } }).populateAll().exec(function (err, episode) {
-            
-        //         if (err) return next(err);
-        //        else{
-        //         // episode.animeString =[]
-        //         // async.each(episode.id_anime, function (anime, callback) {
-        //         //     console.log(anime)
-        //         //     Anime.findOne({ id: anime.id }).exec(function (err, animes) {
-        //         //         if (err) {
-        //         //             callback(err)
-        //         //         } else {
-        //         //             episode.animeString.push({
-        //         //                 id: animes.id,
-        //         //                 nama_anime: animes.nama_anime,
-                                
-    
-        //         //             })
-        //         //             callback()
-        //         //         }
-        //         //     })
-        //         // }, function (err) { // function ini akan jalan bila semua genre_lists telah diproses
-        //         //     console.log(episode.animeString)
-        //         //     if (err)
-        //         //         return res.serverError(err);
-        //         //     else {
-                       
-        //         //     }
-        //         // })
-        //        }
-    
-        //     })
-        // }
-        
+                }); 
     },
     search: function (req, res, next) {
         Anime.find({ like: { nama_anime: '%' + req.param('search') + '%' } }).exec(function (err, search) {
@@ -145,12 +64,52 @@ module.exports = {
                 return res.serverError(err);
             }
             else {
-                res.view("user/search/", {
-                    status: 'OK',
-                    title: 'Detail Anime',
-                    search: search
+                Genre.find().exec(function(err,genre){
+                    res.view("user/search/", {
+                        status: 'OK',
+                        title: 'Hasil Pencarian',
+                        genre:genre,
+                        search: search
+                    })
                 })
+                
+                
             }
+        })
+    },
+
+    daftarAnime:function(req,res,next){
+        var perPage = 10
+            if(!req.params.page){
+                var page =1
+            }
+            else{
+                var page = req.params.page
+            }
+        
+        Anime.find()
+            .skip((perPage * page) - perPage)
+            .limit(perPage)
+            .exec(function(err,anime){
+            if(err){
+                return res.serverError(err); 
+            }
+            else{
+                Genre.find().exec(function(err,genre){
+                    Anime.count().exec(function(err, count) {
+                        if (err) return next(err)
+                        res.view('user/daftar-anime/', {
+                            title : "Daftar Anime",
+                            anime: anime,
+                            genre:genre,
+                            current: page,
+                            pages: Math.ceil(count / perPage)
+                        })
+                    })
+                })
+                
+            }
+
         })
     },
 
@@ -208,34 +167,17 @@ module.exports = {
                                 if (err)
                                         return res.serverError(err);
                                     else {
-                                        res.view("user/detail-anime/", {
+                                        Genre.find().exec(function(err,genre){
+                                            res.view("user/detail-anime/", {
 
-                                            status: 'OK',
-                                            title: 'Detail Anime',
-                                            anime: anime
+                                                status: 'OK',
+                                                title: 'Detail Anime',
+                                                genre:genre,
+                                                anime: anime
+                                            })
                                         })
+                                        
                                     }
-                                // async.each(anime.ratings, function (user, callback) {
-
-                                //     User.findOne({ id: user.id_user }).exec(function (err, users) {
-                                //         if (err) {
-                                //             callback(err)
-                                //         } else {
-                                //             anime.userStrings.push({
-                                //                 id: users.id,
-                                //                 nama: users.nama,
-                                //                 photo_url: users.photo_url, users,
-                                //                 review: user.review,
-                                //                 score: user.score,
-
-                                //             })
-                                //             callback()
-                                //         }
-                                //     })
-                                // }, function (err) { // function ini akan jalan bila semua genre_lists telah diproses
-                                //     console.log(anime)
-                                    
-                                // })
                             }
                         })
 

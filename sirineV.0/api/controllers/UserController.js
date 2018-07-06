@@ -39,12 +39,15 @@ module.exports = {
                 return res.serverError(err);
               }
               else{
-                res.view("user/profile", {
-                                    
-                  status: 'OK',
-                  title: 'Detail Anime',
-                  user: user
-              })      
+                Genre.find().exec(function(err,genre){
+                  res.view("user/profile", {
+                    genre:genre, 
+                    status: 'OK',
+                    title: 'Prorfil',
+                    user: user
+                })     
+                })
+                 
               }
           })
       }
@@ -56,11 +59,15 @@ module.exports = {
         console.log(err);
       }
       else{
-        return res.view('user/edit-profile',{
-          status: 'OK',
-          title: 'Edit Profil',
-          editProfile: editProfile
+        Genre.find().exec(function(err,genre){
+          return res.view('user/edit-profile',{
+            status: 'OK',
+            title: 'Edit Profil',
+            genre:genre,
+            editProfile: editProfile
+          })
         })
+        
       }
     })
   },
@@ -87,7 +94,7 @@ module.exports = {
             err: ubahSuccess
           // If error redirect back to sign-up page
           }
-          res.redirect('/user/profile/' + req.param('id'));
+          res.redirect('/profile/' + req.param('id'));
         }
       })
     
@@ -109,7 +116,7 @@ module.exports = {
             req.session.flash = {
               err: usernamePasswordMismatchError
             }
-            res.redirect('/user/profile/' + req.param('id'));
+            res.redirect('/profile/' + req.param('id'));
             return;
           }
           else{
@@ -135,7 +142,7 @@ module.exports = {
                               err: ubahPass
                             // If error redirect back to sign-up page
                             }
-                            res.redirect('/user/profile/' + req.param('id'));
+                            res.redirect('/profile/' + req.param('id'));
                           }
                     })    
                 }
@@ -168,7 +175,7 @@ module.exports = {
               }).exec(function(err, file) {
                 if (err) { return res.serverError(err) }
                 // if it was successful return the registry in the response
-                res.redirect('/user/profile/' + req.param('id'));
+                res.redirect('/profile/' + req.param('id'));
     })
     })
     
@@ -189,24 +196,53 @@ module.exports = {
         return
       }
       else{
-        User.create(req.body).exec(function(err,user){
-          if (err) {
-            console.log(err);
-            
-            }
-          else{
-            var daftarSuccess = [
-              'Email sudah berhasil didaftar. Silahkan Login'
-            ]
-            req.session.flash = {
-              err: daftarSuccess
-            // If error redirect back to sign-up page
-            }
-            res.redirect('/login');
-            return;
+        
+        if(req.param('no_hp').length>12|| req.param('no_hp').length<11){
+          var failedNohp = [
+            'Nomor Hp yang Anda masukan salah'
+          ]
+          req.session.flash = {
+            err: failedNohp
           }
-            
-        })
+          res.redirect('/register');
+          return
+        }
+        else{
+          User.findOne({no_hp:req.param('no_hp')}).exec(function(err,user){
+            if(user){
+              var nohpready = [
+                'Nomor Hp sudah terdaftar. gunakan Nomor Hp lain untuk mendaftar'
+              ]
+              req.session.flash = {
+                err: nohpready
+              }
+              res.redirect('/register');
+              return
+            }
+            else{
+              User.create(req.body).exec(function(err,user){
+                if (err) {
+                  console.log(err);
+                  
+                  }
+                else{
+                  var daftarSuccess = [
+                    'Email sudah berhasil didaftar. Silahkan Login'
+                  ]
+                  req.session.flash = {
+                    err: daftarSuccess
+                  // If error redirect back to sign-up page
+                  }
+                  res.redirect('/login');
+                  return;
+                }
+                  
+              })
+            }
+          })
+          
+        }
+        
       }
     })
   }

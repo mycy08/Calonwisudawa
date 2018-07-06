@@ -15,11 +15,11 @@
             <div class="col-md-12">
               <h1 class="mb-2 mt-2 text-white">Profile</h1>
               <% if(flash && flash.err) { %>
-                <ul class="alert alert-success">
+                <p class="alert alert-success">
               <% Object.keys(flash.err).forEach(function(error) { %>
-                <li><%- JSON.stringify(flash.err[error]) %></li>
+                <%- JSON.stringify(flash.err[error]) %></p>
               <% }) %>
-              </ul>
+              
               <% } %>
             </div>
           </div>
@@ -40,23 +40,41 @@
             
           </div>
           <div class="col-md-8">
-             <h1 ><%= user.nama %>
-              <a style="font-size:14px;" href="/user/edit-profile/<%= user.id %>" class="warnabiru">
-                <u>
-                  <b>Edit</b>
-                </u>
-                </a>
-              </h1>
-             <h4><i class="fa d-inline fa-envelope-o mxnav "></i> <%= user.email %></h4>
-             <h4><i class="fa d-inline fa-phone mx-1 "></i><%= user.no_hp %></h4>
-             <%
-                if(user.tgl_lahir){%>
-                    <h4 ><i class="fa d-inline fa-calendar-o mxnav "></i><i id="tgl"><%= user.tgl_lahir %></i> </h4>
-                <% }
-                else{%>
-                    <h4><i class="fa d-inline fa-calendar-o mxnav "></i><i> 19 Juni 1990</h4>
-                <% }
-             %>
+            <% if(req.session.User.id==user.id){%>
+              <h1 ><%= user.nama %>
+                <a style="font-size:14px;" href="/user/edit-profile/<%= user.id %>" class="warnabiru">
+                  <u>
+                    <b>Edit</b>
+                  </u>
+                  </a>
+                </h1>
+               <h4><i class="fa d-inline fa-envelope-o mxnav "></i> <%= user.email %></h4>
+               <h4><i class="fa d-inline fa-phone mx-1 "></i><%= user.no_hp %></h4>
+               <%
+                  if(user.tgl_lahir){%>
+                      <h4 ><i class="fa d-inline fa-calendar-o mxnav "></i><i id="tgl"><%= user.tgl_lahir %></i> </h4>
+                  <% }
+                  else{%>
+                      <h4><i class="fa d-inline fa-calendar-o mxnav "></i><i> 19 Juni 1990</h4>
+                  <% }
+               %>
+            <%}
+            else{%>
+              <h1 ><%= user.nama %>
+                
+                </h1>
+               
+               <%
+                  if(user.tgl_lahir){%>
+                      <h4 ><i class="fa d-inline fa-calendar-o mxnav "></i><i id="tgl"><%= user.tgl_lahir %></i> </h4>
+                  <% }
+                  else{%>
+                      <h4><i class="fa d-inline fa-calendar-o mxnav "></i><i> 19 Juni 1990</h4>
+                  <% }
+               %>
+              <%}
+            %>
+             
              
           </div>
       </div>
@@ -86,7 +104,7 @@
                   <div class="col-sm-7 ">
                     <h3 class="mx-1"><a href="/detail-anime/<%=favorit.id%>"><%= favorit.nama_anime%></a></h3>
                     <p style="text-align: justify">
-                        <%= favorit.deskripsi%>
+                        <%= favorit.deskripsi.substring(0,500)%> ... <a href="/detail-anime/<%=favorit.id%>"> Lihat Selengkapnya</a>
                     </p>
                     
                   </div>

@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="/styles/custome.css" type="text/css">
   <link rel="stylesheet" type="text/css" href="/styles/star-rating.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+  
    </head>
 
 <body class="background-hitam">
@@ -16,7 +18,15 @@
   <div class="py-2 text-center background-hitam">
     <div class="container">
       <div class="row">
+          
         <div class="col-md-12">
+            <% if(flash && flash.err) { %>
+              <p class="alert alert-success">
+            <% Object.keys(flash.err).forEach(function(error) { %>
+              <%- JSON.stringify(flash.err[error]) %></p>
+            <% }) %>
+            
+            <% } %>
           <h1 class="mb-2 mt-2 text-white">Anime</h1>
         </div>
       </div>
@@ -83,7 +93,7 @@
                       <td>:</td>
                       <td>
                         <%  _.each(anime.genreStrings,function(genre_list){ %>
-                          <a href="#">
+                          <a href="/genre/<%= genre_list.id%>">
                             <%= genre_list.nama_genre %>
                           </a>
                           <%})%>
@@ -114,7 +124,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <%  _.each(anime.episodes.sort(function(a, b){return b.episode - a.episode}).slice(0,10),function(episode){ %>
+                      <%  _.each(anime.episodes.sort(function(a, b){return b.episode - a.episode}).slice(0,10)  ,function(episode){ %>
                         <tr>
                           <td class="textcenter">
                             <%= anime.nama_anime %> Episode
@@ -184,7 +194,7 @@
       <div class="container cardsview">
         <div class="row">
           <div class="col-md-12 p-4">
-            <table class="table">
+            <table class="table" id="epis">
               <thead>
                 <tr>
                   <th class="textcenter">Judul</th>
@@ -406,18 +416,18 @@
             <div class="row  border py-2 mb-2">
               <div class="col-sm-2 text-center">
                 <% if(user.photo_url) {%>
-                  <a href="#">
+                  <a href="/profile/<%= user.id %>">
                     <img class="d-block img-fluid mb-2" src="/images/user/<%= user.photo_url %>"> </a>
                   <%}
                 else{ %>
-                    <a href="#">
+                    <a href="/profile/<%= user.id %>">
                       <img class="d-block img-fluid mb-2" src="/images/user/default.png"> </a>
                     <%}%>
 
               </div>
               <div class="col-sm-9">
                 <h3>
-                  <%= user.nama %>
+                  <a href="/profile/<%= user.id %>"><%= user.nama %></a> 
                 </h3>
                 <div>
                   <%
@@ -495,18 +505,18 @@
             <div class="row  border py-2 mb-2">
               <div class="col-sm-2 text-center">
                 <% if(user.photo_url) {%>
-                  <a href="#">
+                  <a href="/profile/<%= user.id %>">
                     <img class="d-block img-fluid mb-2" src="/images/user/<%= user.photo_url %>"> </a>
                   <%}
                 else{ %>
-                    <a href="#">
+                    <a href="/profile/<%= user.id %>">
                       <img class="d-block img-fluid mb-2" src="/images/user/default.png"> </a>
                     <%}%>
 
               </div>
               <div class="col-sm-9">
                 <h3>
-                  <%= user.nama %>
+                  <a href="/profile/<%= user.id %>"><%= user.nama %></a> 
                 </h3>
                 <div>
                   <%
@@ -591,8 +601,15 @@
             <div class="col-md-12 p-4">
               <div class="row">
                 <div class="col-sm-2 text-center">
-                  <a href="#">
-                    <img class="d-block img-fluid" src="/images/user/<%= req.session.User.photo_url %>"> </a>
+                  
+                    <% if(req.session.User.photo_url){%>
+                      <a href="#"><img class="d-block img-fluid" src="/images/user/<%= req.session.User.photo_url %>"> </a>
+                    <%}
+                    else{%>
+                      <a href="#"><img class="d-block img-fluid" src="/images/user/default.png"></a>
+                      <%}
+                    %>
+                    
                 </div>
                 <div class="col-sm-9">
                   <h4>Beri Rating</h4>
@@ -647,10 +664,17 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/jquery.min.js"></script>  -->
 <script type="text/javascript" src="/js/star-rating.js"></script>
-<script type="text/javascript" src="/js/bootstrap.js"></script>
+<!-- <script type="text/javascript" src="/js/bootstrap.js"></script> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
   <script type="text/javascript">
+    $(document).ready(function() {
+      $('#epis').DataTable();
+      } );
+
     $(document).ready(function(){
      var $inp = $('#rating-input');
      
@@ -668,7 +692,8 @@
      });
     });
    </script>
-   <script>
+   <script type="text/javascript">
+      
     function tampil() {
         var x = document.getElementById("lihatEpisode");
         var y = document.getElementById("episodeSingkat");
@@ -680,6 +705,7 @@
             y.style.display = "block";
         }
     }
+    
     function tampilReview() {
         var x = document.getElementById("lihatReview");
         var y = document.getElementById("reviewSingkat");

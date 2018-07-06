@@ -33,11 +33,11 @@
                     </h6>
                     <form method="post" action="/session/create" >
                       <% if(flash && flash.err) { %>
-                        <ul class="alert alert-success">
+                        <p class="alert alert-success">
                       <% Object.keys(flash.err).forEach(function(error) { %>
-                        <li><%- JSON.stringify(flash.err[error]) %></li>
+                        <%- JSON.stringify(flash.err[error]) %></p>
                       <% }) %>
-                      </ul>
+                      
                       <% } %>
                       <div class="from-group mb-3">
                         <input type="email" name="email" class="form-control" placeholder="Email" required>

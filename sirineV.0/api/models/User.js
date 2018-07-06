@@ -45,7 +45,7 @@ module.exports = {
     },
     ratings:{
       collection:'rating',
-      via:'id_user'
+      via:'owner_user'
     },
     anime_favorits:{
       collection:'anime_favorit',

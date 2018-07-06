@@ -8,15 +8,31 @@
   <link rel="stylesheet" href="/styles/custome.css" type="text/css">  
   </head>
 <body class="background-hitam">
-  
+    <% if(flash && flash.err) { %>
+      <p class="alert alert-success">
+    <% Object.keys(flash.err).forEach(function(error) { %>
+      <%- JSON.stringify(flash.err[error]) %></p>
+    <% }) %>
+    
+    <% } %>
       <div class="py-1">
 	    <div class="container cardsview">
+          <% if(search==""){%>
+            <div class="col-md-12 ">
+                <h4 class="mt-2 text-black text-center ">Hasil Pencarian Tidak Ditemukan
+                </h4>
+              </div>
+          <% } else{%>
             <div class="col-md-12 ">
               <h4 class="mt-2 text-black text-center ">Hasil Pencarian 
               </h4>
             </div>
+          <%}%>
 	      <div class="row">
 	        <div class="col-md-12 p-4 ">
+              
+            
+            
             <% _.each(search,function(search){%>
               <div class="row border py-2">
                   <div class="col-sm-2 text-center">

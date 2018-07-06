@@ -47,6 +47,18 @@ module.exports.routes = {
     controller: 'anime',
     action: "animeTerbaru",
   },
+  'POST /search/':{
+    controller:"anime",
+    action:"search"
+ } ,
+ 'GET /daftar-anime/:page':{
+  controller:"anime",
+  action:"daftarAnime"
+} ,
+'GET /genre/:id':{
+  controller:"genre",
+  action:"tampilGenre"
+} ,
   
   'GET /detail-anime/:id':{
     controller:"anime",
@@ -56,7 +68,7 @@ module.exports.routes = {
   controller:"anime",
   action:"animeTerbaru"
 } ,
- 'GET /user/profile/:id': {
+ 'GET /profile/:id': {
   controller: 'user',
   action: "userProfile",
 },
