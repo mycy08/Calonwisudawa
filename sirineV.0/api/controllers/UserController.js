@@ -233,6 +233,7 @@ module.exports = {
                     err: daftarSuccess
                   // If error redirect back to sign-up page
                   }
+                  mailer.sendWelcomeMail(user)
                   res.redirect('/login');
                   return;
                 }

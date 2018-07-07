@@ -37,6 +37,9 @@ module.exports = {
       type:'string'
 
     },
+    jenis_kelamin:{
+      type:'string'
+    },
     sukses:{
       type:'integer'
     },

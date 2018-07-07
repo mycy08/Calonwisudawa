@@ -32,6 +32,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  // Routes Website
   '/': {
     view: 'homepage'
   },
@@ -59,7 +60,6 @@ module.exports.routes = {
   controller:"genre",
   action:"tampilGenre"
 } ,
-  
   'GET /detail-anime/:id':{
     controller:"anime",
     action:"detailAnime"
@@ -85,6 +85,13 @@ module.exports.routes = {
     controller: 'genre_list',
     action: "findall",
   },
+
+  //routes mobile
+  'POST /masuk':{
+    controller :'AuthMobile',
+    action:'process'
+  },
+  
  
   
 
