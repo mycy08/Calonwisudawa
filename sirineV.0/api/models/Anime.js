@@ -28,6 +28,12 @@ module.exports = {
     status:{
       type:'string'
     },
+    url_anime_english:{
+      type:'string'
+    },
+    url_anime_indo:{
+      type:'string'
+    },
     episodes:{
       collection:'episode_anime',
       via :'id_anime'

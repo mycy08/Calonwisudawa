@@ -6,6 +6,24 @@
  */
 var nestedPop = require('nested-pop')
 module.exports = {
+    editAni:function(req,res){
+        res.view('admin/editAnime',{
+            layout:false
+        })
+    },
+    editAnime:function(req,res,next){
+        var id = req.param('id_anime')
+        Anime.update({id:id},{
+            nama_anime:req.param('nama_anime'),
+           
+        }).exec(function(err,animeUpdated){
+            if(err){
+                if (err) return next(err)
+
+            }
+            res.json(animeUpdated)
+        })
+    },
     animeTerbaru: function (req, res, next) {
         var d = new Date()
         var month = new Array();
@@ -129,13 +147,14 @@ module.exports = {
                         } else {
 
                             anime.genreStrings.push({
+                                
                                 id: genres.id,
                                 nama_genre: genres.nama_genre
                             })
                             callback()
                         }
                     })
-                }, function (err) { // function ini akan jalan bila semua genre_lists telah diproses
+                }, function (err) { 
 
                     if (err)
                         return res.serverError(err);
@@ -152,15 +171,16 @@ module.exports = {
                                         photo_url: users.photo_url, users,
                                         review: user.review,
                                         score: user.score,
-                                        createdAt : user.createdAt
+                                        createdAt : user.createdAt,
+                                        updatedAt :user.updatedAt
                                         
 
                                     })
                                     callback()
                                 }
                             })
-                        }, function (err) { // function ini akan jalan bila semua genre_lists telah diproses
-
+                        }, function (err) { 
+                            
                             if (err)
                                 return res.serverError(err);
                             else {

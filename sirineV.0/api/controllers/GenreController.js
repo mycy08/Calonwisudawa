@@ -32,7 +32,7 @@ module.exports = {
                             callback()
                         }
                     })
-                }, function (err) { // function ini akan jalan bila semua genre_lists telah diproses
+                }, function (err) { 
                     
                     if (err)
                         return res.serverError(err);

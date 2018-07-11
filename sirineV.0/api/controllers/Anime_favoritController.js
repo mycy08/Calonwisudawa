@@ -13,7 +13,7 @@ module.exports = {
         }
         else{
             if(!search){
-              console.log('tidak ada')
+              
               var AfObj={
                 owner_anime:req.param('id_anime'),
                 owner_user:req.param('id_user'),

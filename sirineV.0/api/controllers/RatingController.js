@@ -33,7 +33,7 @@ module.exports = {
                       req.session.flash = {
                         err: failedRating
                       }
-                    }
+                    } 
                     else{
                       var successRating = [
                         'Review telah berhasil diberikan'
@@ -48,14 +48,23 @@ module.exports = {
                   })
                 }
                 else{
-                  var failedRating = [
-                    'Anime sudah diberi Rating'
-                  ]
-                  req.session.flash = {
-                    err: failedRating
-                  }
-                  res.redirect('/detail-anime/'+req.param('id_anime'));
-                  return
+                  Rating.update({
+                    id_anime :req.param('id_anime'),
+                    id_user :req.param('id_user')
+                  },{
+                    score:req.param('score'),
+                    review:req.param('review')
+                  }).exec(function(err,ratings){
+                    var updateRating = [
+                      'Review Anime sudah berhasil diubah'
+                    ]
+                    req.session.flash = {
+                      err: updateRating
+                    }
+                    res.redirect('/detail-anime/'+req.param('id_anime'));
+                    return
+                  })
+                  
                 }
             }
         })

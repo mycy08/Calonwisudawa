@@ -80,7 +80,17 @@ module.exports = {
       no_hp: req.param('no_hp')
     }
     
-    
+    if(req.param('no_hp').length>12|| req.param('no_hp').length<11){
+      var failedNohp = [
+        'Nomor Hp yang Anda masukan salah'
+      ]
+      req.session.flash = {
+        err: failedNohp
+      }
+      res.redirect('/edit-profile/'+req.param('id'));
+      return
+    }
+    else{
       User.update(req.param('id'),userObj,function(err){
       
         if(err){
@@ -97,6 +107,57 @@ module.exports = {
           res.redirect('/profile/' + req.param('id'));
         }
       })
+    }
+      
+    
+  },
+  gantiPassword:function(req,res,next){
+    User.findOne(req.param('id')).exec(function(err,user){
+      if(req.param('password_lama')==req.param('password_baru')){
+        console.log("bener")
+        bcrypt.genSalt(10, function(err, salt) {
+          bcrypt.hash(req.param('password_baru'), salt, function(err, hash) {
+            if(err) {
+                console.log(err);     
+            } else {
+              var passObj={
+                  password : hash
+                }
+              User.update(req.param('id'),passObj,function(err){
+  
+                      if(err){
+                        console.log(err);
+                      }
+                      else{
+                        var ubahPass = [
+                          'Password berhasil diubah, Silahkan Login kembali !',
+                        ]
+                        req.session.flash = {
+                          err: ubahPass
+                        // If error redirect back to sign-up page
+                        }
+                        res.redirect('/login/');
+                      }
+                })    
+            }
+          });
+        });
+      }
+      else{
+        var usernamePasswordMismatchError = [
+          "Konfirmasi password tidak sama dengan Kata sandi baru !"
+        ]
+        req.session.flash = {
+          err: usernamePasswordMismatchError
+        }
+        res.view("user/ganti-sandi/", {
+					layout:false,
+                    status: 'OK',
+                    title: 'Aktivasi Akun',
+                    user: user
+                }) 
+      }
+    })
     
   },
   updateProfilPassword:function(req,res,next){
@@ -220,25 +281,33 @@ module.exports = {
               return
             }
             else{
-              User.create(req.body).exec(function(err,user){
-                if (err) {
-                  console.log(err);
-                  
+              var kode = Math.floor(Math.random()*90000) + 10000;
+              var userObj={
+                email:req.param('email'),
+                password:req.param('password'),
+                nama:req.param('nama'),
+                no_hp:req.param('no_hp'),
+                kode_verifikasi:kode,
+                status:false
+              }
+              User.create(userObj).exec(function(err,user){ 
+                  if (err) {
+                    console.log(err);
+                    
+                    }
+                  else{
+                    var daftarSuccess = [
+                      'Email sudah berhasil didaftar. Silahkan Login'
+                    ]
+                    req.session.flash = {
+                      err: daftarSuccess
+                    // If error redirect back to sign-up page
+                    }
+                    mailer.sendWelcomeMail(user)
+                    res.redirect('/login');
+                    return;
                   }
-                else{
-                  var daftarSuccess = [
-                    'Email sudah berhasil didaftar. Silahkan Login'
-                  ]
-                  req.session.flash = {
-                    err: daftarSuccess
-                  // If error redirect back to sign-up page
-                  }
-                  mailer.sendWelcomeMail(user)
-                  res.redirect('/login');
-                  return;
-                }
-                  
-              })
+                })
             }
           })
           
@@ -246,5 +315,93 @@ module.exports = {
         
       }
     })
+  },
+
+  //mobile
+  profileMobile: function(req, res, next){
+    var email = req.param('email')
+    User.findOne({email:email}).populateAll().exec(function(err,user){
+        if (err) {
+            return res.serverError(err);
+          }
+          if (!user) {
+            return res.notFound('Could not find email, sorry.');
+          }
+        
+          //sails.log('Found "%s"', finn.fullName);
+          return res.json(user);
+        });
+        
+    },
+animeFavoritMobile: function(req, res, next){
+  User.findOne({email:req.param('email')}).populateAll().exec(function(err,user){
+  if (err){
+    return res.serverError(err);
+  } else {
+      user.anfavStrings = []
+      async.each(user.anime_favorits, function(anfav,callback){
+          Anime.findOne({id:anfav.owner_anime}).exec(function(err,anfavs){
+            if (err) {
+              callback(err)
+            } else {
+              
+              user.anfavStrings.push({
+                  id_fav:anfav.id,
+                  id:anfavs.id,
+                  nama_anime:anfavs.nama_anime,
+                  photo_url :anfavs.photo_url,
+                  deskripsi :anfavs.deskripsi
+                })
+              callback()
+            }
+          })
+  }, function(err){ // function ini akan jalan bila semua genre_lists telah diproses
+          
+          if (err){
+            return res.serverError(err);
+          }
+          else{
+            res.json(user.anfavStrings)
+             
+          }
+      })
   }
+})
+        
+    },
+uploadMobile: function(req, res) {
+    req.file('file') // this is the name of the file in your multipart form
+    .upload({ dirname: '../../assets/images/us' }, function(err, uploads) {
+      // try to always handle errors
+      if (err) { return res.serverError(err) }
+      // uploads is an array of files uploaded 
+      // so remember to expect an array object
+      if (uploads.length === 0) { return res.badRequest('No file was uploaded') }
+      // if file was uploaded create a new registry
+      // at this point the file is phisicaly available in the hard drive
+      var id =User.id;
+      var photo = User.photo;
+      var fd = uploads[0].fd;
+      var nameImage = fd.substring(78)
+      
+      User.update({id:req.param('id')}
+                ,
+                {photo: "http://10.0.2.2:1337/images/user/"+nameImage
+              }).exec(function(err, file) {
+                if (err) { return res.serverError(err) }
+                // if it was successful return the registry in the response
+                return res.json(file)
+    })
+    })
+    
+},
+updateMobile: function(req, res, next){
+    User.update(req.param('id'),req.params.all(), function userUpdated(err,user){
+        if(err){
+            return res.redirect('/user/' + req.param('id'));
+        }
+  if(user)
+    res.json(user);
+    });
+},
 }

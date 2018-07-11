@@ -44,8 +44,8 @@ module.exports.policies = {
     create:'flash',
     updateProfile:'flash',
     userProfile:['flash','authenticated'],
-    
-    '*' : 'authenticated'
+    gantiPassword:'flash'
+    //'*' : 'authenticated'
   }
   
 

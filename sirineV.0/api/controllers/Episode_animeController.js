@@ -4,11 +4,57 @@
  * @description :: Server-side logic for managing episode_animes
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+var request = require('request')
+var cheerio = require('cheerio')
 
+    fs = require('fs'),
+    urls =[],
+    urls1 =[];
 module.exports = {
 	add:function(req,res){
-        res.view('admin/addEpisode')
+        res.view('admin/addEpisode',{
+            layout:false
+        })
+        
     },
+    updateEpisode:function(req,res){
+        
+            Anime.native(function(err, collection) {
+              if (err) return res.serverError(err);
+        
+              collection.find({status:"OnGoing"}, {
+                nama_anime: true,
+                url_anime_english:true
+              }).toArray(function (err, results) {
+                if (err) return res.serverError(err);
+                for(var i=0;i<results.length;i++){
+                    
+                    
+                    request(results[i].url_anime_english,function(err,res,body){
+                        if(!err && res.statusCode == 200){
+                            var $ = cheerio.load(body);
+                            $('a','.infoepbox').each(function(){
+                                var select = $(this);
+                                var url =select.attr('href');
+                                urls.push("http://animeheaven.eu/"+url);
+                            });
+                            fs.writeFile('url.txt', urls, function (err) {
+                                                if (err) 
+                                                    return console.log(err);
+                                                console.log('sukses');
+                                            });
+                            
+                        // console.log(urls);
+                        };
+                    });
+                }
+                console.log('->',results[1].nama_anime);
+                return res.ok(results);
+              });
+            });
+          
+    },
+
     coba:function(req,res,next){
         var d = new Date()
         var month = new Array();

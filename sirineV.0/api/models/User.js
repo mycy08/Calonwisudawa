@@ -46,10 +46,17 @@ module.exports = {
     batal:{
       type:'integer'
     },
+    kode_verifikasi:{
+      type:"string"
+    },
+    status:{
+      type:"boolean"
+    },
     ratings:{
       collection:'rating',
       via:'owner_user'
     },
+    
     anime_favorits:{
       collection:'anime_favorit',
       via:'owner_user'

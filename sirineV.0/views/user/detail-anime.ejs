@@ -20,14 +20,15 @@
       <div class="row">
           
         <div class="col-md-12">
-            <% if(flash && flash.err) { %>
-              <p class="alert alert-success">
-            <% Object.keys(flash.err).forEach(function(error) { %>
-              <%- JSON.stringify(flash.err[error]) %></p>
-            <% }) %>
             
-            <% } %>
           <h1 class="mb-2 mt-2 text-white">Anime</h1>
+          <% if(flash && flash.err) { %>
+            <p class="alert alert-success">
+          <% Object.keys(flash.err).forEach(function(error) { %>
+            <%- JSON.stringify(flash.err[error]) %></p>
+          <% }) %>
+          
+          <% } %>
         </div>
       </div>
     </div>
@@ -410,7 +411,7 @@
     <div class="container cardsview">
       <div class="row">
         <div class="col-md-12 p-4">
-          <%  _.each(anime.userStrings.sort(function(a, b){return b.createdAt - a.createdAt}).slice(0,3),function(user){ %>
+          <%  _.each(anime.userStrings.sort(function(a, b){return b.updatedAt - a.updatedAt}).slice(0,3),function(user){ %>
 
 
             <div class="row  border py-2 mb-2">

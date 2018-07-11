@@ -9,33 +9,129 @@ var bcrypt = require('bcrypt');
 
 module.exports = {
 
-	daftar:function(req,res){
-		res.view('daftar',{
-			
-				layout: false
-			
-		})
-	  },
-	  login:function(req,res){
-		res.view('login',{
-			
+
+	lupaPassword: function (req, res) {
+		res.view('lupa-password', {
 			layout: false
-		
+
 		})
-	  },
+	},
+	daftar: function (req, res) {
+		res.view('daftar', {
+			layout: false
 
-	create: function(req, res, next) {
+		})
+	},
+	login: function (req, res) {
+		res.view('login', {
 
-		// Check for email and password in params sent via the form, if none
-		// redirect the browser back to the sign-in form.
+			layout: false
+
+		})
+	},
+	lupaSandi: function (req, res, next) {
+		User.findOne({ email: req.param('email') }).exec(function (err, user) {
+			if (err) {
+				return next(err)
+			}
+			if (user) {
+				var kode = Math.floor(Math.random() * 90000) + 10000;
+				User.update({ email: req.param('email') }, { kode_verifikasi: kode }).exec(function (err, userUpdated) {
+					if (err) {
+						console.log(err);
+
+					}
+					else {
+						User.findOne({ email: req.param('email') }).exec(function (err, user1) {
+							mailer.sendKataSandi(user1)
+							res.view("user/validasi", {
+								layout: false,
+								status: 'OK',
+								title: 'Aktivasi Akun',
+								user: user
+							})
+						})
+					}
+				})
+			}
+		})
+	},
+	validasiLupaSandi: function (req, res, next) {
+		User.findOne({ id: req.param('id') }).exec(function (err, user) {
+			if (err) {
+				return next(err)
+			}
+			if (user.kode_verifikasi == req.param('kode_verifikasi')) {
+				res.view("user/ganti-sandi/", {
+					layout: false,
+					status: 'OK',
+					title: 'Aktivasi Akun',
+					user: user
+				})
+			}
+			else {
+				var kodeSalah = [
+					"Kode yang Anda masukan salah, Cek email Anda untuk melihat Kode !"
+				]
+				req.session.flash = {
+					err: kodeSalah
+				}
+				res.view("user/validasi", {
+					layout: false,
+					status: 'OK',
+					title: 'Aktivasi Akun',
+					user: user
+				})
+			}
+		})
+	},
+
+	akunAktif: function (req, res, next) {
+
+		User.findOne({ id: req.param('id') }).exec(function (err, user) {
+			if (err) {
+				return next(err)
+			}
+
+			if (user.kode_verifikasi == req.param('kode_verifikasi')) {
+				User.update({ id: req.param('id') }, { status: true }).exec(function (err, userUpdated) {
+					var akunAktif = [
+						"Akun anda sudah di aktivasi, silahkan Login !!"
+					]
+					req.session.flash = {
+						err: akunAktif
+					}
+					res.redirect('/login');
+					return;
+				})
+			}
+			else {
+				var kodeSalah = [
+					"Kode yang Anda masukan salah, Cek email Anda untuk melihat Kode !"
+				]
+				req.session.flash = {
+					err: kodeSalah
+				}
+				res.view("user/akun-aktivasi", {
+					layout: false,
+					status: 'OK',
+					title: 'Aktivasi Akun',
+					user: user
+				})
+			}
+		})
+	},
+
+	create: function (req, res, next) {
+
+
 		if (!req.param('email') || !req.param('password')) {
-			// return next({err: ["Password doesn't match password confirmation."]});
+
 			var usernamePasswordRequiredError = [
 				"Masukan Username dan Password anda"
 			]
 
-			// Remember that err is the object being passed down (a.k.a. flash.err), whose value is another object with
-			// the key of usernamePasswordRequiredError
+
 			req.session.flash = {
 				err: usernamePasswordRequiredError
 			}
@@ -44,13 +140,11 @@ module.exports = {
 			return;
 		}
 
-		// Try to find the user by there email address. 
-		// findOneByEmail() is a dynamic finder in that it searches the model by a particular attribute.
-		// User.findOneByEmail(req.param('email')).done(function(err, user) {
+
 		User.findOneByEmail(req.param('email'), function foundUser(err, user) {
 			if (err) return next(err);
 
-			// If no user is found...
+
 			if (!user) {
 				var noAccountError = [
 					"Email Belum Terdaftar"
@@ -61,46 +155,56 @@ module.exports = {
 				res.redirect('/login');
 				return;
 			}
+			if (user.status) {
+				bcrypt.compare(req.param('password'), user.password, function (err, valid) {
+					if (err) return next(err);
 
-			// Compare password from the form params to the encrypted password of the user found.
-			bcrypt.compare(req.param('password'), user.password, function(err, valid) {
-				if (err) return next(err);
 
-				// If the password from the form doesn't match the password from the database...
-				if (!valid) {
-					var usernamePasswordMismatchError = [
-						"Email atau Password Salah"
-					]
-					req.session.flash = {
-						err: usernamePasswordMismatchError
+					if (!valid) {
+						var usernamePasswordMismatchError = [
+							"Email atau Password Salah"
+						]
+						req.session.flash = {
+							err: usernamePasswordMismatchError
+						}
+						res.redirect('/login');
+						return;
 					}
-					res.redirect('/login');
-					return;
-				}
 
-				// Log user in
-				req.session.authenticated = true;
-				req.session.User = user;
-				res.redirect('/anime-terbaru/1');
 
-			});
+					req.session.authenticated = true;
+					req.session.User = user;
+					res.redirect('/anime-terbaru/1');
+
+				});
+			}
+			else {
+				res.view("user/akun-aktivasi", {
+					layout: false,
+					status: 'OK',
+					title: 'Aktivasi Akun',
+					user: user
+				})
+			}
+
+
 		});
 	},
 
-	destroy: function(req, res, next) {
+	destroy: function (req, res, next) {
 
 		User.findOne(req.session.User.id, function foundUser(err, user) {
 
 			var userId = req.session.User.id;
 
 			if (user) {
-				// The user is "logging out" (e.g. destroying the session) so change the online attribute to false.
+
 				User.update(userId, {
 					online: false
-				}, function(err) {
+				}, function (err) {
 					if (err) return next(err);
 
-					// Inform other sockets (e.g. connected sockets that are subscribed) that the session for this user has ended.
+
 					User.publishUpdate(userId, {
 						loggedIn: false,
 						id: userId,
@@ -108,18 +212,18 @@ module.exports = {
 						action: ' has logged out.'
 					});
 
-					// Wipe out the session (log out)
+
 					req.session.destroy();
 
-					// Redirect the browser to the sign-in screen
+
 					res.redirect('/login');
 				});
 			} else {
 
-				// Wipe out the session (log out)
+
 				req.session.destroy();
 
-				// Redirect the browser to the sign-in screen
+
 				res.redirect('/login');
 			}
 		});

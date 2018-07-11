@@ -40,10 +40,27 @@ module.exports.routes = {
     controller: 'session',
     action: "daftar",
   },
+  
   'GET /login': {
     controller: 'session',
     action: "login",
   },
+  'POST /lupa-sandi':{
+    controller:"session",
+    action:"lupaSandi"
+  } ,
+  'POST /validasi/':{
+    controller:"session",
+    action:"validasiLupaSandi"
+  } ,
+  'POST /ganti-sandi/':{
+    controller:"user",
+    action:"gantiPassword"
+  } ,
+  'GET /lupa-password':{
+    controller:"session",
+    action:"lupaPassword"
+  } ,
   'GET /anime-terbaru/:page': {
     controller: 'anime',
     action: "animeTerbaru",
@@ -52,6 +69,18 @@ module.exports.routes = {
     controller:"anime",
     action:"search"
  } ,
+ 'POST /aktivasi-akun/':{
+  controller:"session",
+  action:"create"
+} ,
+'GET /akun-aktivasi/:id/:kode_verifikasi':{
+  controller:"session",
+  action:"akunAktif"
+} ,
+'POST /akun-aktivasi/':{
+  controller:"session",
+  action:"akunAktif"
+} ,
  'GET /daftar-anime/:page':{
   controller:"anime",
   action:"daftarAnime"
@@ -68,11 +97,12 @@ module.exports.routes = {
   controller:"anime",
   action:"animeTerbaru"
 } ,
+  
  'GET /profile/:id': {
   controller: 'user',
   action: "userProfile",
 },
-'GET /user/edit-profile/:id': {
+'GET /edit-profile/:id': {
   controller: 'user',
   action: "editProfile",
 },
