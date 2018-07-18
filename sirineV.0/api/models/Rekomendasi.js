@@ -89,6 +89,9 @@ module.exports = {
   magic:{
       type:'string'
   },
+  photo_url:{
+      type:'string'
+  }
 
   
   },

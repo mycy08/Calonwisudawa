@@ -236,7 +236,7 @@ module.exports = {
               }).exec(function(err, file) {
                 if (err) { return res.serverError(err) }
                 // if it was successful return the registry in the response
-                res.redirect('/profile/' + req.param('id'));
+                res.json('/profile/' + req.param('id'));
     })
     })
     
@@ -369,9 +369,9 @@ animeFavoritMobile: function(req, res, next){
 })
         
     },
-uploadMobile: function(req, res) {
+uploadPhotoProfilMobile: function(req, res) {
     req.file('file') // this is the name of the file in your multipart form
-    .upload({ dirname: '../../assets/images/us' }, function(err, uploads) {
+    .upload({ dirname: '../../assets/images/user' }, function(err, uploads) {
       // try to always handle errors
       if (err) { return res.serverError(err) }
       // uploads is an array of files uploaded 
@@ -382,19 +382,22 @@ uploadMobile: function(req, res) {
       var id =User.id;
       var photo = User.photo;
       var fd = uploads[0].fd;
-      var nameImage = fd.substring(78)
+      console.log(fd)
+      var nameImage = fd.substring(99)
+      console.log(nameImage)
       
       User.update({id:req.param('id')}
                 ,
-                {photo: "http://10.0.2.2:1337/images/user/"+nameImage
+                {photo_url: nameImage
               }).exec(function(err, file) {
                 if (err) { return res.serverError(err) }
                 // if it was successful return the registry in the response
-                return res.json(file)
+                res.json(file);
     })
     })
     
 },
+  
 updateMobile: function(req, res, next){
     User.update(req.param('id'),req.params.all(), function userUpdated(err,user){
         if(err){
@@ -404,4 +407,59 @@ updateMobile: function(req, res, next){
     res.json(user);
     });
 },
+updateProfilPasswordMobile:function(req,res,next){
+  User.findOne(req.param('id'), function(err,pass){
+    if(err){
+      console.log(err)
+    }
+    else{
+      bcrypt.compare(req.param('password_lama'), pass.password, function(err, valid) {
+        if (err) return next(err);
+
+        // If the password from the form doesn't match the password from the database...
+        if (!valid) {
+          var usernamePasswordMismatchError = [
+            "Password Lama Anda salah"
+          ]
+          req.session.flash = {
+            err: usernamePasswordMismatchError
+          }
+          res.send('false')
+          return;
+        }
+        else{
+          var passbaru 
+          bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(req.param('password_baru'), salt, function(err, hash) {
+              if(err) {
+                  console.log(err);     
+              } else {
+                var passObj={
+                    password : hash
+                  }
+                User.update(req.param('id'),passObj,function(err,userUpdated){
+  
+                        if(err){
+                          console.log(err);
+                        }
+                        else{
+                          var ubahPass = [
+                            'Password berhasil diubah',
+                          ]
+                          req.session.flash = {
+                            err: ubahPass
+                          // If error redirect back to sign-up page
+                          }
+                          res.send('true');
+                        }
+                  })    
+              }
+            });
+          });
+          
+        }
+      })
+    }
+  })
+}
 }

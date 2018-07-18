@@ -641,22 +641,16 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3 col-6 p-1 ">
-          <a href="#">
-            <img class="d-block img-fluids" src="/images/anime/ID_132.jpg"> </a>
-        </div>
-        <div class="col-md-3 col-6 p-1">
-          <a href="#">
-            <img class="d-block img-fluids" src="/images/anime/ID_131.jpg"> </a>
-        </div>
-        <div class="col-md-3 col-6 p-1">
-          <a href="#">
-            <img class="d-block img-fluids" src="/images/anime/ID_133.jpg"> </a>
-        </div>
-        <div class="col-md-3 col-6 p-1">
-          <a href="#">
-            <img class="d-block img-fluids" src="/images/anime/ID_134.jpg"> </a>
-        </div>
+        <% 
+          _.each(rekom.slice(0,4),function(rekomendasi){%>
+            <div class="col-md-3 col-6 p-1 ">
+                <a href="/detail-anime/<%= rekomendasi.ani %>">
+                  <img class="d-block img-fluids" src="/images/anime/<%= rekomendasi.photo_url %>"> </a>
+              </div>
+
+          <%})
+        %>
+      
         <div class="col-md-12 lihatrekomendasi">
           <a href="#">
             Lihat Rekomendasi
